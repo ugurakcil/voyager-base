@@ -1,3 +1,5 @@
+// ugurakcil
+
 function tinymce_init_callback(editor) {
     editor.remove();
     editor = null;
