@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: localhost:3306
--- Üretim Zamanı: 18 May 2022, 15:35:28
+-- Anamakine: localhost
+-- Üretim Zamanı: 18 May 2022, 22:20:12
 -- Sunucu sürümü: 8.0.29-0ubuntu0.20.04.3
 -- PHP Sürümü: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,16 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `data_rows` (
   `id` int UNSIGNED NOT NULL,
   `data_type_id` int UNSIGNED NOT NULL,
-  `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `required` tinyint(1) NOT NULL DEFAULT '0',
   `browse` tinyint(1) NOT NULL DEFAULT '1',
   `read` tinyint(1) NOT NULL DEFAULT '1',
   `edit` tinyint(1) NOT NULL DEFAULT '1',
   `add` tinyint(1) NOT NULL DEFAULT '1',
   `delete` tinyint(1) NOT NULL DEFAULT '1',
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `order` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -70,7 +69,21 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (19, 3, 'updated_at', 'timestamp', 'Güncellendi', 0, 0, 0, 0, 0, 0, '{}', 4),
 (20, 3, 'display_name', 'text', 'Görünen Adı', 1, 1, 1, 1, 1, 1, '{}', 5),
 (21, 1, 'role_id', 'text', 'Yetki', 0, 1, 1, 1, 1, 1, '{}', 9),
-(22, 1, 'email_verified_at', 'timestamp', 'E-Posta Onaylandı', 0, 1, 1, 1, 1, 1, '{}', 6);
+(22, 1, 'email_verified_at', 'timestamp', 'E-Posta Onaylandı', 0, 1, 1, 1, 1, 1, '{}', 6),
+(23, 4, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(24, 4, 'title', 'text', 'Başlık', 0, 1, 1, 1, 1, 1, '{}', 2),
+(25, 4, 'excerpt', 'text_area', 'Kısa Açıklama', 0, 0, 1, 1, 1, 1, '{}', 4),
+(26, 4, 'body', 'rich_text_box', 'Sayfa İçeriği', 0, 1, 1, 1, 1, 1, '{}', 5),
+(27, 4, 'image', 'image', 'Görsel', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1100\",\"height\":\"null\"},\"quality\":\"99%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\"}}]}', 6),
+(28, 4, 'slug', 'text', 'Sayfa Adresi', 0, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\"}}', 7),
+(29, 4, 'meta_description', 'text_area', 'Meta Açıklama', 0, 0, 1, 1, 1, 1, '{}', 9),
+(30, 4, 'seo_title', 'text', 'SEO Başlığı', 0, 0, 1, 1, 1, 1, '{}', 8),
+(31, 4, 'redirect_url', 'text', 'Sayfayı Tamamen Yönlendir', 0, 0, 1, 1, 1, 1, '{}', 10),
+(32, 4, 'sub_title', 'text', 'Alt Başlık', 0, 0, 1, 1, 1, 1, '{}', 3),
+(33, 4, 'header_image', 'image', 'Üst Görsel', 0, 0, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1920\",\"height\":\"null\"},\"quality\":\"99%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\"}}]}', 11),
+(34, 4, 'photos', 'multiple_images', 'Sayfa Galerisi', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"2400\",\"height\":\"null\"},\"quality\":\"99%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\"}}]}', 12),
+(35, 4, 'created_at', 'timestamp', 'Yaratıldı', 0, 0, 1, 0, 0, 0, '{\"format\":\"%d-%m-%Y %H:%M:%S\"}', 13),
+(36, 4, 'updated_at', 'timestamp', 'Güncellendi', 0, 1, 1, 0, 0, 0, '{\"format\":\"%d-%m-%Y %H:%M:%S\"}', 14);
 
 -- --------------------------------------------------------
 
@@ -80,18 +93,18 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 
 CREATE TABLE `data_types` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_singular` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_plural` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `policy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_singular` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_plural` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `policy_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `controller` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
   `server_side` tinyint NOT NULL DEFAULT '0',
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -103,7 +116,8 @@ CREATE TABLE `data_types` (
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
 (1, 'users', 'users', 'Kullanıcı', 'Kullanıcılar', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-04-27 17:10:57', '2022-04-27 18:20:36'),
 (2, 'menus', 'menus', 'Menü', 'Menüler', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-04-27 17:10:57', '2022-04-27 18:21:05'),
-(3, 'roles', 'roles', 'Yetki', 'Yetkiler', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-04-27 17:10:57', '2022-04-27 18:19:15');
+(3, 'roles', 'roles', 'Yetki', 'Yetkiler', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-04-27 17:10:57', '2022-04-27 18:19:15'),
+(4, 'pages', 'pages', 'Sayfa', 'Sayfalar', 'voyager-file-text', 'App\\Models\\Page', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-05-18 13:28:58', '2022-05-18 13:29:12');
 
 -- --------------------------------------------------------
 
@@ -113,11 +127,11 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -129,7 +143,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `menus` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -150,17 +164,17 @@ INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `menu_items` (
   `id` int UNSIGNED NOT NULL,
   `menu_id` int UNSIGNED DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
-  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
+  `icon_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` int DEFAULT NULL,
   `order` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8mb4_unicode_ci
+  `route` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parameters` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -169,16 +183,17 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Giriş', '', '_self', 'voyager-boat', '#000000', NULL, 1, '2022-04-27 17:10:57', '2022-04-27 18:11:53', 'voyager.dashboard', 'null'),
-(2, 1, 'Medya Yönetimi', '', '_self', 'voyager-images', '#000000', NULL, 3, '2022-04-27 17:10:57', '2022-04-27 18:14:40', 'voyager.media.index', 'null'),
+(2, 1, 'Medya Yönetimi', '', '_self', 'voyager-images', '#000000', NULL, 4, '2022-04-27 17:10:57', '2022-05-18 13:29:28', 'voyager.media.index', 'null'),
 (3, 1, 'Kullanıcı Listesi', '', '_self', 'voyager-person', '#000000', 11, 1, '2022-04-27 17:10:57', '2022-04-27 18:14:35', 'voyager.users.index', 'null'),
 (4, 1, 'Yetkiler', '', '_self', 'voyager-lock', '#000000', 11, 2, '2022-04-27 17:10:57', '2022-04-27 18:14:40', 'voyager.roles.index', 'null'),
-(5, 1, 'Araçlar', '', '_self', 'voyager-tools', '#000000', NULL, 4, '2022-04-27 17:10:57', '2022-04-27 18:14:40', NULL, ''),
+(5, 1, 'Araçlar', '', '_self', 'voyager-tools', '#000000', NULL, 5, '2022-04-27 17:10:57', '2022-05-18 13:29:28', NULL, ''),
 (6, 1, 'Menü Oluşturucu', '', '_self', 'voyager-list', '#000000', 5, 1, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.menus.index', 'null'),
 (7, 1, 'Veritabanı', '', '_self', 'voyager-data', '#000000', 5, 2, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.database.index', 'null'),
 (8, 1, 'Dökümantasyon', '', '_self', 'voyager-compass', '#000000', 5, 3, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.compass.index', 'null'),
 (9, 1, 'Panel Üreteci', '', '_self', 'voyager-bread', '#000000', 5, 4, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.bread.index', 'null'),
-(10, 1, 'Ayarlar', '', '_self', 'voyager-settings', '#000000', NULL, 5, '2022-04-27 17:10:57', '2022-04-27 18:14:49', 'voyager.settings.index', 'null'),
-(11, 1, 'Kullanıcılar', '', '_self', 'voyager-person', '#000000', NULL, 2, '2022-04-27 18:14:29', '2022-04-27 18:15:27', NULL, '');
+(10, 1, 'Ayarlar', '', '_self', 'voyager-settings', '#000000', NULL, 6, '2022-04-27 17:10:57', '2022-05-18 13:29:28', 'voyager.settings.index', 'null'),
+(11, 1, 'Kullanıcılar', '', '_self', 'voyager-person', '#000000', NULL, 3, '2022-04-27 18:14:29', '2022-05-18 13:29:28', NULL, ''),
+(12, 1, 'Sayfalar', '', '_self', 'voyager-file-text', '#000000', NULL, 2, '2022-05-18 13:28:58', '2022-05-18 13:29:28', 'voyager.pages.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -188,7 +203,7 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -225,12 +240,35 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `pages`
+--
+
+CREATE TABLE `pages` (
+  `id` int UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `body` longtext COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect_url` text COLLATE utf8mb4_unicode_ci,
+  `sub_title` text COLLATE utf8mb4_unicode_ci,
+  `header_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photos` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -242,7 +280,7 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `permissions` (
   `id` bigint UNSIGNED NOT NULL,
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `table_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -277,7 +315,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (22, 'read_settings', 'settings', '2022-04-27 17:10:57', '2022-04-27 17:10:57'),
 (23, 'edit_settings', 'settings', '2022-04-27 17:10:57', '2022-04-27 17:10:57'),
 (24, 'add_settings', 'settings', '2022-04-27 17:10:57', '2022-04-27 17:10:57'),
-(25, 'delete_settings', 'settings', '2022-04-27 17:10:57', '2022-04-27 17:10:57');
+(25, 'delete_settings', 'settings', '2022-04-27 17:10:57', '2022-04-27 17:10:57'),
+(26, 'browse_pages', 'pages', '2022-05-18 13:28:58', '2022-05-18 13:28:58'),
+(27, 'read_pages', 'pages', '2022-05-18 13:28:58', '2022-05-18 13:28:58'),
+(28, 'edit_pages', 'pages', '2022-05-18 13:28:58', '2022-05-18 13:28:58'),
+(29, 'add_pages', 'pages', '2022-05-18 13:28:58', '2022-05-18 13:28:58'),
+(30, 'delete_pages', 'pages', '2022-05-18 13:28:58', '2022-05-18 13:28:58');
 
 -- --------------------------------------------------------
 
@@ -319,7 +362,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (22, 1),
 (23, 1),
 (24, 1),
-(25, 1);
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1);
 
 -- --------------------------------------------------------
 
@@ -329,11 +377,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -347,8 +395,8 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `roles` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -369,13 +417,13 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) V
 
 CREATE TABLE `settings` (
   `id` int UNSIGNED NOT NULL,
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `order` int NOT NULL DEFAULT '1',
-  `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -402,11 +450,11 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 
 CREATE TABLE `translations` (
   `id` int UNSIGNED NOT NULL,
-  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `column_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `column_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `foreign_key` int UNSIGNED NOT NULL,
-  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `locale` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -453,7 +501,24 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (35, 'data_rows', 'display_name', 14, 'en', 'Created At', '2022-04-27 18:21:05', '2022-04-27 18:21:05'),
 (36, 'data_rows', 'display_name', 15, 'en', 'Updated At', '2022-04-27 18:21:05', '2022-04-27 18:21:05'),
 (37, 'data_types', 'display_name_singular', 2, 'en', 'Menu', '2022-04-27 18:21:05', '2022-04-27 18:21:05'),
-(38, 'data_types', 'display_name_plural', 2, 'en', 'Menus', '2022-04-27 18:21:05', '2022-04-27 18:21:05');
+(38, 'data_types', 'display_name_plural', 2, 'en', 'Menus', '2022-04-27 18:21:05', '2022-04-27 18:21:05'),
+(39, 'data_rows', 'display_name', 23, 'en', 'Id', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(40, 'data_rows', 'display_name', 24, 'en', 'Başlık', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(41, 'data_rows', 'display_name', 25, 'en', 'Kısa Açıklama', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(42, 'data_rows', 'display_name', 26, 'en', 'Sayfa İçeriği', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(43, 'data_rows', 'display_name', 27, 'en', 'Görsel', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(44, 'data_rows', 'display_name', 28, 'en', 'Sayfa Adresi', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(45, 'data_rows', 'display_name', 29, 'en', 'Meta Açıklama', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(46, 'data_rows', 'display_name', 30, 'en', 'SEO Başlığı', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(47, 'data_rows', 'display_name', 31, 'en', 'Sayfayı Tamamen Yönlendir', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(48, 'data_rows', 'display_name', 32, 'en', 'Alt Başlık', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(49, 'data_rows', 'display_name', 33, 'en', 'Üst Görsel', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(50, 'data_rows', 'display_name', 34, 'en', 'Sayfa Galerisi', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(51, 'data_rows', 'display_name', 35, 'en', 'Yaratıldı', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(52, 'data_rows', 'display_name', 36, 'en', 'Güncellendi', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(53, 'data_types', 'display_name_singular', 4, 'en', 'Page', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(54, 'data_types', 'display_name_plural', 4, 'en', 'Pages', '2022-05-18 13:29:12', '2022-05-18 13:29:12'),
+(55, 'menu_items', 'title', 12, 'en', 'Pages', '2022-05-18 13:29:25', '2022-05-18 13:29:25');
 
 -- --------------------------------------------------------
 
@@ -464,13 +529,13 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `role_id` bigint UNSIGNED DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8mb4_unicode_ci,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -480,7 +545,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$PPb0MYC4GQH9vwRPF.jmT.1aXUKRCYZj4j0/6.ic4bhL5xeuHnur6', NULL, NULL, '2022-04-27 17:11:15', '2022-04-27 17:11:15');
+(1, 1, 'admin', 'admin@admin.com', 'users/May2022/RzSc8ASTPO59lzMQs6kL.png', NULL, '$2y$10$PPb0MYC4GQH9vwRPF.jmT.1aXUKRCYZj4j0/6.ic4bhL5xeuHnur6', NULL, '{\"locale\":\"tr\"}', '2022-04-27 17:11:15', '2022-05-18 09:56:34');
 
 -- --------------------------------------------------------
 
@@ -537,6 +602,12 @@ ALTER TABLE `menu_items`
 -- Tablo için indeksler `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `pages`
+--
+ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -613,13 +684,13 @@ ALTER TABLE `user_roles`
 -- Tablo için AUTO_INCREMENT değeri `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `failed_jobs`
@@ -637,7 +708,7 @@ ALTER TABLE `menus`
 -- Tablo için AUTO_INCREMENT değeri `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `migrations`
@@ -646,10 +717,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `personal_access_tokens`
@@ -673,7 +750,7 @@ ALTER TABLE `settings`
 -- Tablo için AUTO_INCREMENT değeri `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
