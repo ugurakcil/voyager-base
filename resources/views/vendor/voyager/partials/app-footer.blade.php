@@ -5,7 +5,7 @@
         @else
         @endif
         --}}
-        {!! __('voyager::theme.footer_copyright') !!} <a href="https://digitalexchange.com.tr/" target="_blank">Digital Exchange</a>
+        {!! __('voyager::theme.footer_copyright') !!} {{--<a href="https://www.datasins.com" target="_blank">Datasins</a>--}}
 
         @php $version = Voyager::getVersion(); @endphp
         @if (!empty($version))
@@ -13,3 +13,6 @@
         @endif
     </div>
 </footer>
+<div class="animated-background-wrapper">
+    <div class="animated-background"></div>
+</div>

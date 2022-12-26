@@ -1,0 +1,20 @@
+/**
+ * Var olan CSS niteliklerinin, dil ve tarayıcı uyumluluğu gibi 
+ * sebeplerle genel kullanımı burada hazırlanır
+ * */
+ 
+@mixin padding($top: 0, $end: 0, $bottom: 0, $start) {
+    @if $currentDirection == 'ltr' {
+        padding: $top $end $bottom $start;
+    } @else {
+        padding: $top $start $bottom $end;
+    }
+}
+ 
+@mixin margin($top: 0, $end: 0, $bottom: 0, $start) {
+    @if $currentDirection == 'ltr' {
+        margin: $top $end $bottom $start;
+    } @else {
+        margin: $top $start $bottom $end;
+    }
+}

@@ -1,0 +1,8 @@
+section.testimonials{background-image:url("https://picsum.photos/seed/view1/1900/400")}html[dir=rtl] section.testimonials{background-image:url("https://picsum.photos/seed/view2/1900/400")}/*# sourceMappingURL=desktop-rtl.css.map */silebilirsiniz
+**/
+section.testimonials {
+  background-image: url("https://picsum.photos/seed/view1/1900/400");
+}
+html[dir=rtl] section.testimonials {
+  background-image: url("https://picsum.photos/seed/view2/1900/400");
+}/*# sourceMappingURL=desktop-rtl.css.map */

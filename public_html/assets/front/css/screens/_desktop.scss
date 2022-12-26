@@ -1,0 +1,17 @@
+/**
+ * 1200px'den büyük ekranlar içindir
+ *
+ * Desktop ekranlarında görüntülenecek background görselleri
+ *  ve stil özelliklerini buradan ekleyebilirsiniz
+ *
+ * CSS'ler örnektir, silebilirsiniz
+**/
+
+
+section.testimonials {
+    background-image: url('https://picsum.photos/seed/view1/1900/400');
+
+    html[dir="rtl"] & {
+        background-image: url('https://picsum.photos/seed/view2/1900/400');
+    }
+}

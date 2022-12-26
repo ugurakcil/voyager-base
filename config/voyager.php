@@ -112,6 +112,8 @@ return [
         'locales' => [
             'tr',
             'en',
+            'ar',
+            'de',
         ],
     ],
 
@@ -145,6 +147,7 @@ return [
 
         'widgets' => [
             'TCG\\Voyager\\Widgets\\UserDimmer',
+            'App\\Http\\Controllers\\Admin\\Widgets\\PageCounter',
         ],
 
     ],
@@ -186,8 +189,10 @@ return [
     'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
 
     // Here you can specify additional assets you would like to be included in the master.blade
+
+    // datasins.css ve light.css olmak üzere iki tema hazırladım, aşağıdan değiştirilebilir
     'additional_css' => [
-        'assets/admin/custom.css',
+        'assets/admin/datasins.css',
     ],
 
     'additional_js' => [

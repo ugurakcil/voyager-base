@@ -100,10 +100,13 @@ return [
     'available_locales' => [
         'tr' => 'tr',
         'en' => 'en',
+        'ar' => 'ar',
         'de' => 'de',
-        'nl' => 'nl',
-        'ru' => 'ru'
     ],
+
+    /**
+     * Bu kısım GEO Location kullanılacağı zaman ayarlanır
+     */
     'matching_countries' => [
         'Turkey' => 'tr',
         'Azerbaijan' => 'tr',
@@ -115,7 +118,6 @@ return [
         'Austria' => 'de',
         'Luxembourg' => 'de',
     ],
-
 
     /*
     |--------------------------------------------------------------------------

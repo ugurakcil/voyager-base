@@ -1,0 +1,67 @@
+/**
+ * Tüm boyutlarda yüklenir (_global tanımlı)
+ *  bu yüzden tüm boyutlarda kullanılan değişkenleri buradan ekleyin
+ *
+ * Örneğin renk tanımlamaları hemen hemen tüm boyutlarda aynıdır
+ * Buradan renk tanımlaması yaparak ilgili rengi çekebilirsiniz
+ *
+ * PX tanımlamaları boyutlarda değişkenlik gösterebilir,
+ * bu yüzden direkt ilgili stil dosyanızda tanımlanması daha uygun olur
+ * ancak tüm boyutlarda geçerli bir PX tanımı varsa buraya ekleyin
+ *
+ * Renk isimlendirmesi yaparken renk ismini direkt olarak kullanmayın!
+ * Çünkü bunlar değiştirilebilir oldukları için burada tanımlanıyor.
+ * $blue olarak tanımladığınız bir rengin içeriğinde kırmızıyla değiştirmeniz gerekebilir.
+ * bu durumda ismi mavi içeriği kırmızı olan saçma sapan bir tanımlamanız olur, kafa karıştırır.
+ *
+ * kavramları ve renkleri yakın isimleri -100, -200 ekleyerek arttırabilirsiniz,
+ * rakam arttıkça koyu renk daha koyulaşmalı, açık renk daha açık olmalı,
+ * uzak bir noktaya renk atanacaksa 100,200 atlayıp direkt 500,600 gibi sayı verilebilir
+ * çok fazla detaylanırsa 1000'i aşmayıp tam ara rakamlara girilmeli
+ * 100'ler dolunca -50, 50'ler dolunca -25..
+ *
+ * Bir web sitesinde genellikle 2 veya 3 ana renk olur, diğer renkler ise bunlardan çeşitlendirilir
+ * aşağıda primary sitede en çok kullanılan renktir,
+ * yoğunluğuna göre sırasıyla secondary, tertiary, quaternary, fifth renkleri de tanımlanabilir
+ *
+ * Kullanılmayacak renkleri silebilirsiniz ancak aşağıdaki tanımlara bağlı kalarak renklendirin
+**/
+
+$primary:               #75d1d1 !default;
+$primary-darken:        #63b0b0 !default;
+$primary-darken-300:    #549494 !default;
+$primary-darken-300:    #4a8181 !default;
+$primary-darken-500:    #306666 !default;
+$primary-darken-700:    #306666 !default;
+$primary-lighten:       #81e2e2 !default;
+$primary-lighten-300:   #81e2e2 !default;
+$primary-lighten-600:   #a4f6f6 !default;
+
+$secondary:             #c99ae2 !default;
+
+$tertiary:              #e29abf !default;
+
+$quaternary:            #64c8b9 !default;
+
+$fifth:                 #5bd1a7 !default;
+
+$sixth:                 #5bc1d1 !default;
+
+$info:                  #0dcaf0 !default;
+
+$warning:               #ffc107 !default;
+
+$danger:                #dc3545 !default;
+
+$success:               #1ed2bd !default;
+
+$light:                 #f3f9f9 !default;
+$light-darken:          #c9eded !default;
+$light-darken-100:      #dff5f5 !default;
+
+$dark:                  #090f0f !default;
+$dark-lighten:          #111c1c !default;
+$dark-lighten-100:      #172727 !default;
+$dark-lighten-200:      #1d3131 !default;
+$dark-lighten-300:      #284444 !default;
+$dark-lighten-400:      #315353 !default;

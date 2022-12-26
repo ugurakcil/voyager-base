@@ -1,0 +1,13 @@
+section.testimonials{background-image:url("https://picsum.photos/seed/view3/800/400")}.example-about-image-wrapper{margin-bottom:30px}/*# sourceMappingURL=mobile-rtl.css.map */zelliklerini buradan ekleyebilirsiniz
+ *
+ * CSS'ler örnektir, silebilirsiniz
+ * Bunun gibi ilebilirsiniz yazılarını da silin ki
+ * sonra yazdığınız kodları silmesinler
+ */
+section.testimonials {
+  background-image: url("https://picsum.photos/seed/view3/800/400");
+}
+
+.example-about-image-wrapper {
+  margin-bottom: 30px;
+}/*# sourceMappingURL=mobile-rtl.css.map */

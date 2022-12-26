@@ -18,7 +18,7 @@
                     @if($contentTypeKey !== 'selected')
                         <li class="@if(isset($contentTypes['selected']) && $contentTypes['selected'] == $contentTypeKey) active @endif">
                             <a href="{{ (route('voyager.'.$dataType->slug.'.index', ['contentType' => $contentTypeKey], true)) }}">
-                                {{ __('options.'.$contentTypeVal) }}
+                                {{ __('generic.'.$contentTypeVal) }}
                             </a>
                         </li>
                     @endif
@@ -43,7 +43,13 @@
         @endcan
         @can('delete', app($dataType->model_name))
             @if($usesSoftDeletes)
-                <input type="checkbox" @if ($showSoftDeleted) checked @endif id="show_soft_deletes" data-toggle="toggle" data-on="{{ __('voyager::bread.soft_deletes_off') }}" data-off="{{ __('voyager::bread.soft_deletes_on') }}">
+                <input type="checkbox" class="styled_checkbox" @if ($showSoftDeleted) checked @endif id="show_soft_deletes" data-toggle="toggle" data-on="{{ __('voyager::bread.soft_deletes_off') }}" data-off="{{ __('voyager::bread.soft_deletes_on') }}">
+
+                <label for="show_soft_deletes" class="styled_checkbox_label">
+                    <div class="checkbox__inner">
+                        <div class="green__ball"></div>
+                    </div>
+                </label>
             @endif
         @endcan
         @foreach($actions as $action)
@@ -101,7 +107,14 @@
                                     <tr>
                                         @if($showCheckboxColumn)
                                             <th>
-                                                <input type="checkbox" class="select_all">
+                                                <input type="checkbox" class="styled_checkbox select_all" id="select_all">
+
+                                                <label for="select_all" class="styled_checkbox_label">
+                                                    <div class="checkbox__inner">
+                                                        <div class="green__ball"></div>
+                                                    </div>
+                                                </label>
+
                                             </th>
                                         @endif
                                         @foreach($dataType->browseRows as $row)
@@ -130,7 +143,13 @@
                                     <tr class="@if($data->deleted_at) deleted-line @endif">
                                         @if($showCheckboxColumn)
                                             <td>
-                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
+                                                <input type="checkbox" name="row_id" class="styled_checkbox" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
+
+                                                <label for="checkbox_{{ $data->getKey() }}" class="styled_checkbox_label">
+                                                    <div class="checkbox__inner">
+                                                        <div class="green__ball"></div>
+                                                    </div>
+                                                </label>
                                             </td>
                                         @endif
                                         @foreach($dataType->browseRows as $row)

@@ -10,6 +10,8 @@ function tinymce_init_callback(editor) {
         selector: 'textarea.richTextBox',
         base_url: $('meta[name="assets-path"]').attr('content')+'?path=js/',
         min_height: 700,
+        skin: "oxide-dark",
+        content_css: "dark",
         resize: 'vertical',
         plugins: 'link image code table lists bootstrap4grid',
         extended_valid_elements : 'input[id|name|value|type|class|style|required|placeholder|autocomplete|onclick]',
@@ -55,7 +57,9 @@ function tinymce_init_callback(editor) {
         image_caption: true,
         image_title: true,
         content_css: [
-            'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
+            'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
+            window.location.origin + '/assets/admin/datasins.css'
         ],
     });
+
 }

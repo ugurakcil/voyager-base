@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Widgets;
 
-<<<<<<< HEAD
-use App\Models\VogerBlog\Page;
-=======
-use App\Page;
->>>>>>> d4c455dbc30ea73bda11048bb784b839a8741c9d
+use App\Models\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
@@ -28,14 +24,14 @@ class PageCounter extends BaseDimmer
     public function run()
     {
         $count = Page::count();
-        $string = trans_choice('dimmer.page', $count);
+        $string = trans_choice('generic.page', $count);
 
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-file-text',
             'title'  => "{$count} {$string}",
-            'text'   => __('dimmer.page_text', ['count' => $count, 'string' => Str::lower($string)]),
+            'text'   => __('generic.page_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
-                'text' => __('dimmer.page_link_text'),
+                'text' => __('generic.page_link_text'),
                 'link' => route('voyager.pages.index'),
             ],
             'image' => voyager_asset('images/widget-backgrounds/03.jpg'),

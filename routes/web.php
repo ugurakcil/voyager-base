@@ -1,30 +1,66 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\PageController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Dilden bağımsız sayfalar aşağıda tanımlanır
+ * Burayı nadiren kullanacaksınız
+ *
+ * İlk etapta dil parametresi gelmeden girilen
+ * index sayfasını tetiklemek ve dil değişimini çağırmak
+ * gibi /tr /en dil ön eki bağımsız işlemler burada gerçekleşir
+ *
+ * Form kayıt işlemleri de dil ön eki bağımsızdır
+**/
+Route::get('/', [GeneralController::class, 'home'])->name('index');
+Route::get('locale/{locale?}', [LanguageController::class, 'setLocale'])->name('setLocale');
 
-Route::get('/', function () {
-    return view('welcome');
+/**
+ * Form kayıt istekleri bu bölümden yapılır
+ * thiswebsiteaddress.com/save/formSaveRoutingName şeklinde
+ * save prefix'i sonrası çağrılır
+ */
+Route::middleware('throttle:3333,1')->group(function () {
+    Route::group(['prefix' => 'save'], function() {
+        Route::any('contact', [FormController::class, 'saveContact'])->name('saveContact');
+        Route::any('newsletter', [FormController::class, 'saveNewsletter'])->name('saveNewsletter');
+    });
+});
+
+/**
+ * Yeni sayfa eklerken aşağıdaki yapıyı kullanın.
+ *
+ * app/Http/GeneralController.php dosyasına gidin
+ * "example" method'unu kopyalayıp isimlendirin
+ * ve ardından buraya route bilgisini aşağıdaki "example"
+ * tanımlı route'da olduğu gibi ekleyin.
+ *
+ * Example'ınıza erişim sağlarken tr-en kullandığınıza dikkat edin
+ *
+ * Eğer route aktif olmazsa tarayıcıdan şunu çalıştırın;
+ * thiswebsiteaddress.com/artisan/route-clear
+**/
+Route::group(['prefix' => '{lang}', 'where' => ['lang' => 'en|tr|ar|de']], function() { // [a-zA-Z]{2}
+    Route::get('/', [GeneralController::class, 'home'])->name('home');
+    Route::get('page/{slug}', [PageController::class, 'show'])->name('page');
+    Route::get('post/{slug}', [PageController::class, 'show'])->name('post');
+    // Route::get('/example', [GeneralController::class, 'example'])->name('example');
 });
 
 
+/**
+ * Voyager panel routes
+**/
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-
 /*
-* urls to run artisan commands on shared servers (ugurakcil)
+* Urls to run artisan commands on shared servers
 * */
 Route::group(['prefix' => 'artisan'], function () {
     Route::get('/clear-cache', function() {

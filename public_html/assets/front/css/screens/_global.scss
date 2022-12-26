@@ -1,0 +1,232 @@
+/**
+ * Bu dosya her ekran boyutunda ve her sayfada yüklenir
+ * Bu yüzden desktop'ta veya mobile'da kullanılan bir arkaplan görselini buraya eklemeyin
+ * Burası sadece her ekran ve sayfada geçerli olan renkler vb içindir.
+ *
+ * Kolay bir yöntem olarak önce desktop.scss dosyasından kodlamaya başlayın
+ * Buraya tablet ve mobile'a taşımak zorunda kalabileceğiniz stil özelliklerini ekleyin
+ *
+ * CSS'ler örnektir, '@importlar hariç' herşeyi silebilirsiniz
+**/
+
+@import '../config/_variables';
+@import '../helpers/_generic';
+@import '../helpers/_fonts';
+@import '../helpers/_custom';
+@import '../components/_recaptcha';
+@import '../components/_loader';
+
+
+/**
+ * Bu yazıyı ve aşağısını silin
+*/
+
+body {
+    background-color: $primary-darken-500;
+    color: $light;
+}
+
+a{
+    color: $primary;
+    @include transitionColor();
+
+    &:hover{
+        color: $primary-lighten-600;
+    }
+}
+
+header {
+    nav{
+        background-color: $dark-lighten-400;
+
+        .nav-link{
+            color: $primary-darken;
+
+            &:hover{
+                color: $primary-lighten-600;
+            }
+        }
+    }
+
+    div.top-navigation {
+        div.choose-language {
+            z-index: 1050;
+        }
+
+        .top-corporate-links{
+            color: $primary-darken-300;
+
+            a{
+                color: $primary-darken-300;
+                text-decoration: none;
+
+                &:hover{
+                    color: $primary-lighten-600;
+                }
+            }
+        }
+    }
+}
+
+section.slide,
+section.contact,
+section.about-us {
+    margin-bottom:50px;
+}
+
+section.articles{
+    padding: 50px 0;
+
+    .article-list-img{
+        height:200px;
+        border-radius: 5px;
+        margin-bottom:15px;
+        background-size: cover;
+        background-position-y: center;
+    }
+}
+
+section.contact{
+    textarea{
+        height: 210px;
+    }
+}
+
+section.testimonials{
+    background-size: cover;
+
+    h3 {
+        display: inline-block;
+        background-color: #ffc107;
+        padding: 15px 20px;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 0;
+    }
+}
+
+section.page-header {
+    margin-bottom:50px;
+    background-color: $dark-lighten-300;
+    padding: 40px 0;
+    position: relative;
+    transition: all 1s;
+
+    &:after {
+        content: '\A';
+        position: absolute;
+        width: 100%;
+        height:100%;
+        top:0;
+        #{$left}:0;
+        background:rgba(0,0,0,0.5);
+        opacity: 1;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        z-index: 1;
+    }
+
+    a.page-title{
+        color: $light;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+section.slide {
+    .carousel{
+        .carousel-caption{
+            background-color: rgba($dark-lighten-200, .5);
+            #{$left}: 0;
+            #{$right}: 0;
+            bottom: 0;
+
+            h5{
+                font-size: 2.22rem;
+                color: #ffc107;
+            }
+
+            p{
+                font-size: 1.33rem;
+            }
+        }
+    }
+}
+
+footer {
+    padding-top:30px;
+}
+
+ul.social-media,
+ol.social-media{
+    list-style: none;
+    padding:0; margin:0;
+
+    li{
+        display: inline-block;
+        margin-#{$right}: 1px;
+
+        &:last-child{
+            margin-#{$right}: 0;
+        }
+
+        &.emphasis{
+            a{
+                color: $light;
+                background-color: darken($primary, 30);
+            }
+        }
+
+        a{
+            display: inline-block;
+            font-size:19px;
+            color: $primary;
+            background-color: $dark;
+            padding:4px;
+            text-align:center;
+            width:34px; height:34px;
+            border-radius:50%;
+            margin-bottom: 5px;
+            @include transitionBg();
+
+            &:hover, &.active {
+                color: $dark;
+                background-color: $primary;
+            }
+        }
+    }
+}
+
+aside{
+    &.page {
+        .excerpt-box{
+            background-color: $dark-lighten-100;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom:20px;
+        }
+
+        .main-image{
+            img {
+                width: 100%;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+h2.page-inside-title,
+h3.page-inside-title {
+    padding-bottom:30px;
+    margin-bottom:30px;
+    border-bottom:3px solid $warning;
+}
+
+.iti { // intlTelInput bugfixed
+  width: 100%;
+
+  .iti__country-name{
+    color: $dark-lighten-200;
+  }
+}
