@@ -2,6 +2,7 @@
 Örnektir, section tag'i içindeki herşeyi silin
 --}}
 
+@if(isset($homePosts) && count($homePosts) > 0)
 <section class="articles text-bg-warning">
     <div class="container">
       <div class="row d-flex justify-content-center">
@@ -17,40 +18,19 @@
 
       <div class="row text-start">
 
+	@foreach($homePosts as $homePost)
         <div class="col-md-4 mb-5">
-          <div class="article-list-img" style="background-image:url('https://picsum.photos/id/227/300/200')"></div>
-          <h5 class="mb-3">Maria Smantha</h5>
+          <div class="article-list-img" style="background-image:url('{{Storage::url($homePost->image)}}')"></div>
+          <h5 class="mb-3">{{$homePost->title}}</h5>
           <p class="px-xl-3">
-            <i class="fa-solid fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic
-            tenetur.
+            <i class="fa-solid fa-quote-left pe-2"></i>{{$homePost->excerpt}}
           </p>
-          <h6 class="mb-3">Web Developer</h6>
+          <h6 class="mb-3">XYZ</h6>
         </div>
+	@endforeach
 
-        <div class="col-md-4 mb-5">
-          <div class="article-list-img" style="background-image:url('https://picsum.photos/id/212/300/200')"></div>
-          <h5 class="mb-3">Maria Smantha</h5>
-          <p class="px-xl-3">
-            <i class="fa-solid fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic
-            tenetur.
-          </p>
-          <h6 class="mb-3">Web Developer</h6>
-        </div>
+      </div><!-- /.row.text-start -->
 
-        <div class="col-md-4 mb-5">
-          <div class="article-list-img" style="background-image:url('https://picsum.photos/id/222/300/200')"></div>
-          <h5 class="mb-3">Maria Smantha</h5>
-          <p class="px-xl-3">
-            <i class="fa-solid fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic
-            tenetur.
-          </p>
-          <h6 class="mb-3">Web Developer</h6>
-        </div>
-
-
-      </div>
     </div><!-- /.container -->
   </section>
+@endif

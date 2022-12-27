@@ -16,3 +16,8 @@ yarn-error.log
 /.bash_history
 /.local
 /.cache
+/.config
+/.vscode-server
+/.gitconfig
+/.lesshst
+/.wget-hsts
