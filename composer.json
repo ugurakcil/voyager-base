@@ -13,7 +13,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "tcg/voyager": "^1.6",
-        "ugurakcil/voyager-booster": "^0.0.9"
+        "ugurakcil/voyager-booster": "^0.1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
