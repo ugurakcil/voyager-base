@@ -27,10 +27,26 @@ return [
     'error' => 'Fehler',
     'pdpa_approval' => 'Ich habe den Beleuchtungstext des Gesetzes zum Schutz personenbezogener Daten gelesen und akzeptiere ihn',
     'personal_data_approval' => 'Ich stimme der Weitergabe meiner personenbezogenen Daten zu',
+    'content_required' => 'Inhalt erforderlich',
+    'content_required_long' => 'Inhalt erforderlich Lorem ipsum dolor sit amet consectetur adipisicing elit. Content Not Found Voluptates alias obcaecati hic iste voluptas nulla.',
+    'categories' => 'Kategorien',
+    'category' => 'Kategorie',
+    'tags'  => 'Stichworte',
+    'tag' => 'Schild',
+    'comments' => 'Bemerkungen',
+    'comment' => 'Kommentar',
+    'date' => 'Datum',
+    'published' => 'Veröffentlicht',
+    'updated' => 'Aktualisiert',
 
     /**
      * Form Terms
      */
+    'your_comment' => 'Dein Kommentar',
+    'send_my_comment' => 'Senden Sie meinen Kommentar',
+    'leave_a_feedback' => 'Hinterlassen Sie ein Feedback',
+    'leave_your_comment' => 'Hinterlasse ein Kommentar',
+    'comment_form_saved' => 'Ihr Kommentar wurde gesendet. Es wird von Systemadministratoren geprüft und veröffentlicht.',
     'email_address' => 'E-Mail-Addresse',
     'your_email_address' => 'Deine Emailadresse',
     'email' => 'E-Mail',

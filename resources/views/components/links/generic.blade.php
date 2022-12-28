@@ -8,6 +8,10 @@ if($type == 'page') {
 }
 @endphp
 
+{{--
+TODO: strupper vs.. kontrol et
+--}}
+
 @if($li)
     <li {{$attributes->class([$li, $isActivated()])}}>
 @endif

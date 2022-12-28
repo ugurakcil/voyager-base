@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Slide;
-use App\Models\Post;
 use App\Models\Part;
+use App\Models\Post;
+use App\Models\Slide;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\FrontController;
 
 class GeneralController extends FrontController
 {
@@ -32,16 +33,16 @@ class GeneralController extends FrontController
         }
         */
 
-	/*
-	Part contents
-	*/
-	$this->data['parts'] = Part::whereIn('id', [1,2,3])->get()->translate(app()->getLocale())->keyBy('id');
+        /*
+        Part contents
+        */
+        $this->data['parts'] = Part::whereIn('id', [1,2,3])->get()->translate(app()->getLocale())->keyBy('id');
 
-	/*
-	DB queries of posts
-	*/
-	$this->data['homePosts'] = Post::select(['id', 'title', 'excerpt', 'slug', 'image', 'post_category_id'])
-		->limit(3)->get()->translate(app()->getLocale());
+        /*
+        DB queries of posts
+        */
+        $this->data['homePosts'] = Post::select(['id', 'title', 'excerpt', 'slug', 'image', 'post_category_id'])
+		    ->limit(3)->get()->translate(app()->getLocale());
 
         /*
         * Main Page Slider Data
