@@ -4,11 +4,12 @@ Silmeden önce tag kapanış notu örneklerine dikkat edin
 Uzun tag alanlarında karışıkları önlemek için kapanış bilgisi eklemek önemlidir
 --}}
 
+@if(isset($parts) && isset($parts[1]))
 <section class="testimonials ">
     <div class="container">
         <div class="p-4 p-md-5 text-center text-lg-start">
             <div class="text-center">
-                <h3>Happy Customers</h3>
+                <h3>{{$parts[3]->title}}</h3>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10">
@@ -16,17 +17,18 @@ Uzun tag alanlarında karışıkları önlemek için kapanış bilgisi eklemek �
                     <div class="card-body m-3">
                     <div class="row">
                         <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
+                        {{--
+                        Daima afterImageName ile en uygun ölçekteki görseli tanımlayın.
+                        Yüksek çözünürlüklü resimlerin küçük bir alana yüklenmesi,
+                        gereksiz site yavaşlığı ve kötü seo optimizasyonu yaratır.
+
+                        * Her türlü medyanın başına Storage::url eklemeyi unutmayın!
+                        --}}
+                        <img src="{{Storage::url(afterImageName($parts[3]->image,'cropped'))}}"
                             class="rounded-circle img-fluid shadow-1" alt="woman avatar" width="200" height="200">
                         </div>
-                        <div class="col-lg-8">
-                        <p class="text-muted fw-light mb-4">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
-                            molestiae numquam quas, voluptates omnis nulla ea odio quia similique
-                            corrupti magnam.
-                        </p>
-                        <p class="fw-bold text-muted mb-2"><strong>Anna Smith</strong></p>
-                        <p class="fw-bold text-muted mb-0">Product manager</p>
+                        <div class="col-lg-8 text-muted fw-light">
+                            {!!$parts[3]->body!!}
                         </div>
                     </div>
                     </div>
@@ -36,3 +38,4 @@ Uzun tag alanlarında karışıkları önlemek için kapanış bilgisi eklemek �
         </div>
     </div>
 </section>
+@endif

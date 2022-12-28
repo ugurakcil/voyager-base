@@ -27,10 +27,26 @@ return [
     'error' => 'خطأ',
     'pdpa_approval' => 'لقد قرأت وأوافق على نص الإضاءة الخاص بقانون حماية البيانات الشخصية',
     'personal_data_approval' => 'أوافق على مشاركة بياناتي الشخصية',
+    'content_required' => 'المحتوى مطلوب',
+    'content_required_long' => 'المحتوى مطلوب Lorem ipsum dolor sit amet consectetur adipisicing elit. Content Not Found Voluptates alias obcaecati hic iste voluptas nulla.',
+    'categories' => 'التصنيفات',
+    'category' => 'فئة',
+    'tags'  => 'العلامات',
+    'tag' => 'بطاقة شعار',
+    'comments' => 'تعليقات',
+    'comment' => 'تعليق',
+    'date' => 'تاريخ',
+    'published' => 'نشرت',
+    'updated' => 'محدث',
 
     /**
      * Form Terms
      */
+    'your_comment' => 'تعليقك',
+    'send_my_comment' => 'أرسل تعليقي',
+    'leave_a_feedback' => 'اترك تعليقًا',
+    'leave_your_comment' => 'اترك تعليقك',
+    'comment_form_saved' => 'لقد تم ارسال تعليقك. سيتم فحصه ونشره من قبل مسؤولي النظام.',
     'email_address' => 'عنوان البريد الالكترونى',
     'your_email_address' => 'عنوان بريدك  الإلكتروني',
     'email' => 'البريد الإلكتروني',

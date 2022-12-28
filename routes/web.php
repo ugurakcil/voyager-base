@@ -48,6 +48,7 @@ Route::group(['prefix' => '{lang}', 'where' => ['lang' => 'en|tr|ar|de']], funct
     Route::get('/', [GeneralController::class, 'home'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'show'])->name('page');
     Route::get('post/{slug}', [PageController::class, 'show'])->name('post');
+    Route::get('tag/{slug}', [PageController::class, 'show'])->name('tag');
     // Route::get('/example', [GeneralController::class, 'example'])->name('example');
 });
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 26 Ara 2022, 09:54:45
+-- Üretim Zamanı: 28 Ara 2022, 20:08:07
 -- Sunucu sürümü: 8.0.31-0ubuntu0.22.04.1
 -- PHP Sürümü: 8.1.13
 
@@ -70,16 +70,16 @@ CREATE TABLE `contacts` (
 CREATE TABLE `data_rows` (
   `id` int UNSIGNED NOT NULL,
   `data_type_id` int UNSIGNED NOT NULL,
-  `field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `required` tinyint(1) NOT NULL DEFAULT '0',
   `browse` tinyint(1) NOT NULL DEFAULT '1',
   `read` tinyint(1) NOT NULL DEFAULT '1',
   `edit` tinyint(1) NOT NULL DEFAULT '1',
   `add` tinyint(1) NOT NULL DEFAULT '1',
   `delete` tinyint(1) NOT NULL DEFAULT '1',
-  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `details` text COLLATE utf8mb4_unicode_ci,
   `order` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -189,7 +189,21 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (103, 11, 'slug', 'text', 'Sayfa Adresi', 0, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:tags,slug\"}}', 3),
 (104, 9, 'title', 'text', 'Başlık', 1, 1, 1, 1, 1, 1, '{}', 2),
 (105, 11, 'title', 'text', 'Başlık', 0, 1, 1, 1, 1, 1, '{}', 2),
-(106, 10, 'post_belongstomany_tag_relationship', 'relationship', 'tags', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Tag\",\"table\":\"tags\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"posts_tags\",\"pivot\":\"1\",\"taggable\":\"0\"}', 16);
+(106, 10, 'post_belongstomany_tag_relationship', 'relationship', 'Etiketler', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Tag\",\"table\":\"tags\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"posts_tags\",\"pivot\":\"1\",\"taggable\":\"0\"}', 16),
+(107, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(108, 12, 'title', 'text', 'Başlık', 0, 1, 1, 1, 1, 1, '{}', 2),
+(109, 12, 'sub_title', 'text', 'Alt Başlık', 0, 1, 1, 1, 1, 1, '{}', 3),
+(110, 12, 'excerpt', 'text_area', 'Kısa Açıklama', 0, 1, 1, 1, 1, 1, '{}', 4),
+(111, 12, 'body', 'rich_text_box', 'Uzun İçerik (varsa)', 0, 0, 1, 1, 1, 1, '{}', 5),
+(112, 12, 'image', 'image', 'Görsel 1 (varsa)', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"2000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":false,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"300\"}}]}', 6),
+(113, 12, 'image2', 'image', 'Görsel 2 (varsa)', 0, 0, 1, 1, 1, 1, '{\"resize\":{\"width\":\"2000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":false,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"300\"}}]}', 7),
+(114, 12, 'image3', 'image', 'Görsel 3 (varsa)', 0, 0, 1, 1, 1, 1, '{\"resize\":{\"width\":\"2000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":false,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"300\"}}]}', 8),
+(115, 12, 'link1_text', 'text', 'Bağlantı 1 Yazısı (varsa)', 0, 1, 1, 1, 1, 1, '{}', 9),
+(116, 12, 'link1_url', 'text', 'Bağlantı 1 URL (varsa)', 0, 0, 1, 1, 1, 1, '{}', 10),
+(117, 12, 'link2_text', 'text', 'Bağlantı 2 Yazısı (varsa)', 0, 0, 1, 1, 1, 1, '{}', 11),
+(118, 12, 'link2_url', 'text', 'Bağlantı 2 URL (varsa)', 0, 0, 1, 1, 1, 1, '{}', 12),
+(119, 12, 'created_at', 'timestamp', 'Üretildi', 0, 0, 1, 0, 0, 1, '{\"format\":\"%d-%m-%Y %H:%M:%S\"}', 13),
+(120, 12, 'updated_at', 'timestamp', 'Güncellendi', 0, 1, 1, 0, 0, 0, '{\"format\":\"%d-%m-%Y %H:%M:%S\"}', 14);
 
 -- --------------------------------------------------------
 
@@ -199,18 +213,18 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 
 CREATE TABLE `data_types` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_singular` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_plural` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `policy_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `controller` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_singular` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_plural` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `policy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
   `server_side` tinyint NOT NULL DEFAULT '0',
-  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `details` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -229,8 +243,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (7, 'contacts', 'contacts', 'İletişim Formu', 'İletişim Formları', 'voyager-mail', 'App\\Models\\Contact', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"name\",\"scope\":null}', '2022-12-19 01:46:32', '2022-12-19 05:24:17'),
 (8, 'newsletters', 'newsletters', 'Bülten E-Postası', 'Bülten E-Postaları', 'voyager-mail', 'App\\Models\\Newsletter', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"email\"}', '2022-12-19 05:24:07', '2022-12-19 05:24:07'),
 (9, 'categories', 'categories', 'Kategorisi', 'Kategorileri', 'voyager-categories', 'App\\Models\\Category', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":\"order\",\"order_display_column\":\"title\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-12-19 17:02:21', '2022-12-21 12:03:33'),
-(10, 'posts', 'posts', 'İçerik', 'İçerikler', 'voyager-news', 'App\\Models\\Post', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-12-19 17:09:49', '2022-12-21 12:18:18'),
-(11, 'tags', 'tags', 'Etiket', 'Etiketler', 'voyager-tag', 'App\\Models\\Tag', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-12-19 17:14:26', '2022-12-21 12:03:16');
+(10, 'posts', 'posts', 'İçerik', 'İçerikler', 'voyager-news', 'App\\Models\\Post', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-12-19 17:09:49', '2022-12-27 11:07:44'),
+(11, 'tags', 'tags', 'Etiket', 'Etiketler', 'voyager-tag', 'App\\Models\\Tag', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-12-19 17:14:26', '2022-12-21 12:03:16'),
+(12, 'parts', 'parts', 'Parça', 'Parçalar', 'voyager-pizza', 'App\\Models\\Part', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-12-27 12:54:05', '2022-12-27 23:51:25');
 
 -- --------------------------------------------------------
 
@@ -240,11 +255,11 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -256,7 +271,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `menus` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -277,17 +292,17 @@ INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `menu_items` (
   `id` int UNSIGNED NOT NULL,
   `menu_id` int UNSIGNED DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
-  `icon_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
+  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` int DEFAULT NULL,
   `order` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `route` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parameters` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -296,25 +311,26 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Giriş', '', '_self', 'voyager-boat', '#000000', NULL, 1, '2022-04-27 17:10:57', '2022-04-27 18:11:53', 'voyager.dashboard', 'null'),
-(2, 1, 'Medya Yönetimi', '', '_self', 'voyager-images', '#000000', NULL, 8, '2022-04-27 17:10:57', '2022-12-19 17:58:21', 'voyager.media.index', 'null'),
+(2, 1, 'Medya Yönetimi', '', '_self', 'voyager-images', '#000000', NULL, 10, '2022-04-27 17:10:57', '2022-12-27 23:37:52', 'voyager.media.index', 'null'),
 (3, 1, 'Kullanıcı Listesi', '', '_self', 'voyager-person', '#000000', 11, 1, '2022-04-27 17:10:57', '2022-04-27 18:14:35', 'voyager.users.index', 'null'),
 (4, 1, 'Yetkiler', '', '_self', 'voyager-lock', '#000000', 11, 2, '2022-04-27 17:10:57', '2022-04-27 18:14:40', 'voyager.roles.index', 'null'),
-(5, 1, 'Araçlar', '', '_self', 'voyager-tools', '#000000', NULL, 10, '2022-04-27 17:10:57', '2022-12-19 17:58:45', NULL, ''),
+(5, 1, 'Araçlar', '', '_self', 'voyager-tools', '#000000', NULL, 12, '2022-04-27 17:10:57', '2022-12-27 23:37:52', NULL, ''),
 (6, 1, 'Menü Oluşturucu', '', '_self', 'voyager-list', '#000000', 5, 1, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.menus.index', 'null'),
 (7, 1, 'Veritabanı', '', '_self', 'voyager-data', '#000000', 5, 2, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.database.index', 'null'),
 (8, 1, 'Dökümantasyon', '', '_self', 'voyager-compass', '#000000', 5, 3, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.compass.index', 'null'),
 (9, 1, 'Panel Üreteci', '', '_self', 'voyager-bread', '#000000', 5, 4, '2022-04-27 17:10:57', '2022-04-27 18:14:32', 'voyager.bread.index', 'null'),
-(10, 1, 'Ayarlar', '', '_self', 'voyager-settings', '#000000', NULL, 11, '2022-04-27 17:10:57', '2022-12-19 17:58:45', 'voyager.settings.index', 'null'),
-(11, 1, 'Kullanıcılar', '', '_self', 'voyager-person', '#000000', NULL, 7, '2022-04-27 18:14:29', '2022-12-19 17:58:21', NULL, ''),
+(10, 1, 'Ayarlar', '', '_self', 'voyager-settings', '#000000', NULL, 13, '2022-04-27 17:10:57', '2022-12-27 23:37:52', 'voyager.settings.index', 'null'),
+(11, 1, 'Kullanıcılar', '', '_self', 'voyager-person', '#000000', NULL, 9, '2022-04-27 18:14:29', '2022-12-27 23:37:52', NULL, ''),
 (12, 1, 'Sayfalar', '', '_self', 'voyager-file-text', '#000000', NULL, 4, '2022-05-18 13:28:58', '2022-12-19 17:58:21', 'voyager.pages.index', 'null'),
 (13, 1, 'Website Ayarları', '', '_self', 'voyager-world', '#000000', NULL, 3, '2022-12-16 12:16:07', '2022-12-19 17:58:21', 'voyager.websites.edit', '{\"id\":1}'),
 (14, 1, 'Manşetler', '', '_self', 'voyager-photos', '#000000', NULL, 5, '2022-12-18 20:17:24', '2022-12-19 17:58:21', 'voyager.slides.index', 'null'),
-(15, 1, 'İletişim Formları', '', '_self', 'voyager-mail', '#000000', NULL, 6, '2022-12-19 01:46:32', '2022-12-19 17:58:21', 'voyager.contacts.index', 'null'),
-(16, 1, 'Bülten E-Postaları', '', '_self', 'voyager-mail', '#000000', NULL, 9, '2022-12-19 05:24:07', '2022-12-19 17:58:45', 'voyager.newsletters.index', 'null'),
+(15, 1, 'İletişim Formları', '', '_self', 'voyager-mail', '#000000', NULL, 8, '2022-12-19 01:46:32', '2022-12-27 23:37:52', 'voyager.contacts.index', 'null'),
+(16, 1, 'Bülten E-Postaları', '', '_self', 'voyager-mail', '#000000', NULL, 11, '2022-12-19 05:24:07', '2022-12-27 23:37:52', 'voyager.newsletters.index', 'null'),
 (17, 1, 'Kategoriler', '', '_self', 'voyager-categories', '#000000', 20, 2, '2022-12-19 17:02:21', '2022-12-19 17:58:34', 'voyager.categories.index', 'null'),
 (18, 1, 'İçerikler', '', '_self', 'voyager-news', '#000000', 20, 1, '2022-12-19 17:09:50', '2022-12-19 17:58:28', 'voyager.posts.index', 'null'),
 (19, 1, 'Etiketler', '', '_self', 'voyager-tag', '#000000', 20, 3, '2022-12-19 17:14:26', '2022-12-19 17:58:34', 'voyager.tags.index', 'null'),
-(20, 1, 'İçerik Listesi', '', '_self', 'voyager-treasure', '#000000', NULL, 2, '2022-12-19 17:58:15', '2022-12-19 17:58:21', NULL, '');
+(20, 1, 'İçerik Listesi', '', '_self', 'voyager-treasure', '#000000', NULL, 2, '2022-12-19 17:58:15', '2022-12-19 17:58:21', NULL, ''),
+(22, 1, 'Parçalar', '', '_self', 'voyager-pizza', '#000000', NULL, 6, '2022-12-27 23:37:17', '2022-12-27 23:37:52', 'voyager.parts.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -324,7 +340,7 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -378,17 +394,17 @@ CREATE TABLE `newsletters` (
 
 CREATE TABLE `pages` (
   `id` int UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `excerpt` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `redirect_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `sub_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `header_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `body` longtext COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect_url` text COLLATE utf8mb4_unicode_ci,
+  `sub_title` text COLLATE utf8mb4_unicode_ci,
+  `header_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photos` longtext COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `order` int DEFAULT '0'
@@ -406,12 +422,44 @@ INSERT INTO `pages` (`id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_de
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `parts`
+--
+
+CREATE TABLE `parts` (
+  `id` int UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `image` text COLLATE utf8mb4_unicode_ci,
+  `image2` text COLLATE utf8mb4_unicode_ci,
+  `image3` text COLLATE utf8mb4_unicode_ci,
+  `link1_text` text COLLATE utf8mb4_unicode_ci,
+  `link1_url` text COLLATE utf8mb4_unicode_ci,
+  `link2_text` text COLLATE utf8mb4_unicode_ci,
+  `link2_url` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `parts`
+--
+
+INSERT INTO `parts` (`id`, `title`, `sub_title`, `excerpt`, `body`, `image`, `image2`, `image3`, `link1_text`, `link1_url`, `link2_text`, `link2_url`, `created_at`, `updated_at`) VALUES
+(1, 'Anasayfa Deneme Giriş Yazısı Lorem Ipsum', '', 'Fusce a quam. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Etiam imperdiet imperdiet orci. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo.', '', 'parts/December2022/PWX0y59wZRg5zSjcQ7QX.jpg', NULL, NULL, 'Bizi Yakından Tanıyın', '#', 'Bize Ulaşın', '#', '2022-12-27 12:59:25', '2022-12-27 23:57:11'),
+(2, 'Son İçerikler', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.', '', NULL, NULL, NULL, 'Tüm İçerikler', '#', '', '', '2022-12-27 13:00:40', '2022-12-27 13:00:40'),
+(3, 'Mutlu Müşteriler', '', '', '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam.</p>\n<p><strong>Anna Smith - </strong><em>Product manager</em></p>', 'parts/December2022/J2c6zKO3eLwD9MHmqy9v.jpg', NULL, NULL, '', '', '', '', '2022-12-27 13:10:33', '2022-12-27 23:57:01');
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -423,8 +471,8 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `permissions` (
   `id` bigint UNSIGNED NOT NULL,
-  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -498,7 +546,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (62, 'read_tags', 'tags', '2022-12-19 17:14:26', '2022-12-19 17:14:26'),
 (63, 'edit_tags', 'tags', '2022-12-19 17:14:26', '2022-12-19 17:14:26'),
 (64, 'add_tags', 'tags', '2022-12-19 17:14:26', '2022-12-19 17:14:26'),
-(65, 'delete_tags', 'tags', '2022-12-19 17:14:26', '2022-12-19 17:14:26');
+(65, 'delete_tags', 'tags', '2022-12-19 17:14:26', '2022-12-19 17:14:26'),
+(66, 'browse_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
+(67, 'read_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
+(68, 'edit_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
+(69, 'add_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
+(70, 'delete_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05');
 
 -- --------------------------------------------------------
 
@@ -580,7 +633,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (62, 1),
 (63, 1),
 (64, 1),
-(65, 1);
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1);
 
 -- --------------------------------------------------------
 
@@ -590,11 +648,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -623,6 +681,15 @@ CREATE TABLE `posts` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Tablo döküm verisi `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `slug`, `excerpt`, `body`, `seo_title`, `meta_description`, `author_id`, `status`, `image`, `post_category_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'Phasellus blandit leo ut odio', 'phasellus-blandit-leo-ut-odio', 'Fusce ac felis sit amet ligula pharetra condimentum. Duis vel nibh at velit scelerisque suscipit. Nam pretium turpis et arcu', '<p>Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Curabitur a felis in nunc fringilla tristique. In hac habitasse platea dictumst. Pellentesque auctor neque nec urna.</p>\n<p>Curabitur a felis in nunc fringilla tristique. Nulla sit amet est. Aliquam lobortis. Vivamus laoreet.</p>\n<p>Cras dapibus. Curabitur nisi. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Phasellus tempus.</p>', '', '', NULL, 1, 'posts/December2022/JXIi9kglDOXImWnB6qpj.jpg', 1, '2022-12-27 11:15:08', '2022-12-27 11:15:08', NULL),
+(3, 'Vestibulum suscipit nulla quis orci', 'vestibulum-suscipit-nulla-quis-orci', 'Vestibulum suscipit nulla quis orci. Pellentesque ut neque. Vivamus elementum semper nisi. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi', '<p>Fusce ac felis sit amet ligula pharetra condimentum. Cras sagittis. Sed cursus turpis vitae tortor. Nullam tincidunt adipiscing enim. Nunc nec neque.</p>\n<p>Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Quisque id odio. Fusce commodo aliquam arcu. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.</p>\n<p>Etiam imperdiet imperdiet orci. Praesent egestas tristique nibh. Curabitur at lacus ac velit ornare lobortis. Maecenas nec odio et ante tincidunt tempus. Aenean imperdiet.</p>\n<p>Fusce fermentum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Curabitur at lacus ac velit ornare lobortis. Maecenas malesuada. Ut varius tincidunt libero.</p>', '', '', NULL, 1, 'posts/December2022/VEV5vMVQsxbofQwTjpzA.jpg', 1, '2022-12-27 11:16:18', '2022-12-27 11:16:18', NULL),
+(4, 'Türkçe başlık habitant morbi tristiquev', 'turkce-baslik-habitant-morbi-tristiquev', 'Quisque id mi. Nullam vel sem. Aenean ut eros et nisl sagittis vestibulum. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Vivamus in erat ut urna cursus vestibulum.', '<p>In ac felis quis tortor malesuada pretium. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Praesent congue erat at massa. Nam pretium turpis et arcu. Sed in libero ut nibh placerat accumsan.</p>\n<p>Etiam iaculis nunc ac metus. In ut quam vitae odio lacinia tincidunt. Etiam rhoncus. Nunc interdum lacus sit amet orci. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.</p>\n<p>Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Cras id dui. Phasellus a est. Fusce ac felis sit amet ligula pharetra condimentum. Curabitur a felis in nunc fringilla tristique.</p>\n<p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In hac habitasse platea dictumst. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Ut non enim eleifend felis pretium feugiat. Phasellus nec sem in justo pellentesque facilisis.</p>', '', '', NULL, 1, 'posts/December2022/huRdMqDSG2ueSDO0AZwk.jpg', 1, '2022-12-27 11:17:00', '2022-12-27 11:19:37', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -635,6 +702,16 @@ CREATE TABLE `posts_tags` (
   `tag_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Tablo döküm verisi `posts_tags`
+--
+
+INSERT INTO `posts_tags` (`id`, `post_id`, `tag_id`) VALUES
+(1, 2, 1),
+(2, 3, 2),
+(3, 4, 1),
+(4, 4, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -643,8 +720,8 @@ CREATE TABLE `posts_tags` (
 
 CREATE TABLE `roles` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -665,13 +742,13 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) V
 
 CREATE TABLE `settings` (
   `id` int UNSIGNED NOT NULL,
-  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci,
+  `details` text COLLATE utf8mb4_unicode_ci,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order` int NOT NULL DEFAULT '1',
-  `group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -742,11 +819,11 @@ INSERT INTO `tags` (`id`, `title`, `slug`) VALUES
 
 CREATE TABLE `translations` (
   `id` int UNSIGNED NOT NULL,
-  `table_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `column_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `column_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foreign_key` int UNSIGNED NOT NULL,
-  `locale` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1071,7 +1148,106 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (312, 'data_types', 'display_name_plural', 10, 'de', 'İçerikler', '2022-12-21 12:10:25', '2022-12-21 12:10:25'),
 (313, 'data_rows', 'display_name', 106, 'en', 'tags', '2022-12-21 12:18:18', '2022-12-21 12:18:18'),
 (314, 'data_rows', 'display_name', 106, 'ar', 'tags', '2022-12-21 12:18:18', '2022-12-21 12:18:18'),
-(315, 'data_rows', 'display_name', 106, 'de', 'tags', '2022-12-21 12:18:18', '2022-12-21 12:18:18');
+(315, 'data_rows', 'display_name', 106, 'de', 'tags', '2022-12-21 12:18:18', '2022-12-21 12:18:18'),
+(316, 'posts', 'title', 4, 'en', 'Pellentesque habitant morbi tristiquev', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(317, 'posts', 'title', 4, 'ar', 'هناك حقيقة مثبتة منذ زمن ', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(318, 'posts', 'title', 4, 'de', 'Deustch demo habitant morbi tristiquev', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(319, 'posts', 'slug', 4, 'en', 'pellentesque-habitant-morbi-tristiquev', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(320, 'posts', 'slug', 4, 'ar', 'hnak-hqyqh-mthbth-mnth-zmn', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(321, 'posts', 'slug', 4, 'de', 'deustch-demo-habitant-morbi-tristiquev', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(322, 'posts', 'excerpt', 4, 'en', 'Quisque id mi. Nullam vel sem. Aenean ut eros et nisl sagittis vestibulum. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Vivamus in erat ut urna cursus vestibulum.', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(323, 'posts', 'excerpt', 4, 'ar', 'هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص. إن كنت تريد أن تستخدم نص لوريم إيبسوم ما، عليك أن تتحقق أولاً أن ', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(324, 'posts', 'excerpt', 4, 'de', 'Quisque id mi. Nullam vel sem. Aenean ut eros et nisl sagittis vestibulum. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Vivamus in erat ut urna cursus vestibulum.', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(325, 'posts', 'body', 4, 'en', '<p>In ac felis quis tortor malesuada pretium. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Praesent congue erat at massa. Nam pretium turpis et arcu. Sed in libero ut nibh placerat accumsan.</p>\n<p>Etiam iaculis nunc ac metus. In ut quam vitae odio lacinia tincidunt. Etiam rhoncus. Nunc interdum lacus sit amet orci. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.</p>\n<p>Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Cras id dui. Phasellus a est. Fusce ac felis sit amet ligula pharetra condimentum. Curabitur a felis in nunc fringilla tristique.</p>\n<p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In hac habitasse platea dictumst. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Ut non enim eleifend felis pretium feugiat. Phasellus nec sem in justo pellentesque facilisis.</p>', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(326, 'posts', 'body', 4, 'ar', '<p>ليس هناك أي كلمات أو عبارات محرجة أو غير لائقة مخبأة في هذا النص. بينما تعمل جميع مولّدات نصوص لوريم إيبسوم على الإنترنت على إعادة تكرار مقاطع من نص لوريم إيبسوم نفسه عدة مرات بما تتطلبه الحاجة، يقوم مولّدنا هذا باستخدام كلمات من قاموس يحوي على أكثر</p>\n<p>من 200 كلمة لا تينية، مضاف إليها مجموعة من الجمل النموذجية، لتكوين نص لوريم إيبسوم ذو شكل منطقي قريب إلى النص الحقيقي. وبالتالي يكون النص الناتح خالي من التكرار، أو أي كلمات أو عبارات غير لائقة أو ليس هناك أي كلمات أو عبارات محرجة أو غير لائقة مخبأة في هذا النص. بينما تعمل جميع مولّدات نصوص لوريم إيبسوم على</p>\n<p>الإنترنت على إعادة تكرار مقاطع من نص لوريم إيبسوم نفسه عدة مرات بما تتطلبه الحاجة، يقوم مولّدنا هذا باستخدام كلمات من قاموس يحوي على أكثر من 200 كلمة لا تينية، مضاف إليها مجموعة من الجمل النموذجية، لتكوين نص لوريم إيبسوم ذو شكل منطقي قريب إلى النص الحقيقي. وبالتالي يكون النص الناتح خالي من التكرار، أو أي كلمات أو عبارات غير لائقة أو&nbsp;</p>', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(327, 'posts', 'body', 4, 'de', '<p>In ac felis quis tortor malesuada pretium. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Praesent congue erat at massa. Nam pretium turpis et arcu. Sed in libero ut nibh placerat accumsan.</p>\n<p>Etiam iaculis nunc ac metus. In ut quam vitae odio lacinia tincidunt. Etiam rhoncus. Nunc interdum lacus sit amet orci. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.</p>\n<p>Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Cras id dui. Phasellus a est. Fusce ac felis sit amet ligula pharetra condimentum. Curabitur a felis in nunc fringilla tristique.</p>\n<p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In hac habitasse platea dictumst. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Ut non enim eleifend felis pretium feugiat. Phasellus nec sem in justo pellentesque facilisis.</p>', '2022-12-27 11:19:37', '2022-12-27 11:19:37'),
+(328, 'parts', 'title', 1, 'en', 'Homepage Demo Lorem Ipsum Dolor', '2022-12-27 12:59:25', '2022-12-27 12:59:25'),
+(329, 'parts', 'title', 1, 'ar', 'ليتصور طريقه وضع النصوص بالتصاميم سواء كانت', '2022-12-27 12:59:25', '2022-12-27 12:59:25'),
+(330, 'parts', 'title', 1, 'de', 'Deutscher Testtitel für Homepage', '2022-12-27 12:59:25', '2022-12-27 12:59:25'),
+(331, 'parts', 'excerpt', 1, 'ar', 'وعند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم ويتم وضع النصوص النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية بالتصميم قد تشغل المشاهد عن وضع الكثير من الملاحظات او الانتقادات للتصميم الاساسي', '2022-12-27 12:59:25', '2022-12-27 12:59:25'),
+(332, 'parts', 'title', 2, 'en', 'Latest Posts', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(333, 'parts', 'title', 2, 'ar', 'آخر المشاركات', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(334, 'parts', 'title', 2, 'de', 'Neueste Beiträge', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(335, 'parts', 'excerpt', 2, 'en', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(336, 'parts', 'excerpt', 2, 'ar', 'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود \nأنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أريد أكسير سيتاشن يللأمكو', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(337, 'parts', 'excerpt', 2, 'de', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(338, 'parts', 'link1_text', 2, 'en', 'All Posts', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(339, 'parts', 'link1_text', 2, 'ar', 'جميع المشاركات', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(340, 'parts', 'link1_text', 2, 'de', 'Tüm İçerikler', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(341, 'parts', 'link1_url', 2, 'en', '#', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(342, 'parts', 'link1_url', 2, 'ar', '#', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(343, 'parts', 'link1_url', 2, 'de', '#', '2022-12-27 13:03:17', '2022-12-27 13:03:17'),
+(344, 'parts', 'title', 3, 'en', 'Happy Customers', '2022-12-27 13:10:33', '2022-12-27 13:10:33'),
+(345, 'parts', 'title', 3, 'ar', 'الزبائن سعداء', '2022-12-27 13:10:33', '2022-12-27 13:10:33'),
+(346, 'parts', 'title', 3, 'de', 'Zufriedene Kunden', '2022-12-27 13:10:33', '2022-12-27 13:10:33'),
+(347, 'menu_items', 'title', 22, 'en', 'Parts', '2022-12-27 23:37:17', '2022-12-27 23:37:17'),
+(348, 'menu_items', 'title', 22, 'ar', 'القطع', '2022-12-27 23:37:45', '2022-12-27 23:37:45'),
+(349, 'menu_items', 'title', 22, 'de', 'Teile', '2022-12-27 23:37:45', '2022-12-27 23:37:45'),
+(350, 'data_rows', 'display_name', 107, 'en', 'Id', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(351, 'data_rows', 'display_name', 107, 'ar', 'Id', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(352, 'data_rows', 'display_name', 107, 'de', 'Id', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(353, 'data_rows', 'display_name', 108, 'en', 'Başlık', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(354, 'data_rows', 'display_name', 108, 'ar', 'Başlık', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(355, 'data_rows', 'display_name', 108, 'de', 'Başlık', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(356, 'data_rows', 'display_name', 109, 'en', 'Alt Başlık', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(357, 'data_rows', 'display_name', 109, 'ar', 'Alt Başlık', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(358, 'data_rows', 'display_name', 109, 'de', 'Alt Başlık', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(359, 'data_rows', 'display_name', 110, 'en', 'Kısa Açıklama', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(360, 'data_rows', 'display_name', 110, 'ar', 'Kısa Açıklama', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(361, 'data_rows', 'display_name', 110, 'de', 'Kısa Açıklama', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(362, 'data_rows', 'display_name', 111, 'en', 'Uzun İçerik (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(363, 'data_rows', 'display_name', 111, 'ar', 'Uzun İçerik (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(364, 'data_rows', 'display_name', 111, 'de', 'Uzun İçerik (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(365, 'data_rows', 'display_name', 112, 'en', 'Görsel 1 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(366, 'data_rows', 'display_name', 112, 'ar', 'Görsel 1 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(367, 'data_rows', 'display_name', 112, 'de', 'Görsel 1 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(368, 'data_rows', 'display_name', 113, 'en', 'Görsel 2 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(369, 'data_rows', 'display_name', 113, 'ar', 'Görsel 2 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(370, 'data_rows', 'display_name', 113, 'de', 'Görsel 2 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(371, 'data_rows', 'display_name', 114, 'en', 'Görsel 3 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(372, 'data_rows', 'display_name', 114, 'ar', 'Görsel 3 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(373, 'data_rows', 'display_name', 114, 'de', 'Görsel 3 (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(374, 'data_rows', 'display_name', 115, 'en', 'Bağlantı 1 Yazısı (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(375, 'data_rows', 'display_name', 115, 'ar', 'Bağlantı 1 Yazısı (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(376, 'data_rows', 'display_name', 115, 'de', 'Bağlantı 1 Yazısı (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(377, 'data_rows', 'display_name', 116, 'en', 'Bağlantı 1 URL (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(378, 'data_rows', 'display_name', 116, 'ar', 'Bağlantı 1 URL (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(379, 'data_rows', 'display_name', 116, 'de', 'Bağlantı 1 URL (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(380, 'data_rows', 'display_name', 117, 'en', 'Bağlantı 2 Yazısı (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(381, 'data_rows', 'display_name', 117, 'ar', 'Bağlantı 2 Yazısı (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(382, 'data_rows', 'display_name', 117, 'de', 'Bağlantı 2 Yazısı (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(383, 'data_rows', 'display_name', 118, 'en', 'Bağlantı 2 URL (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(384, 'data_rows', 'display_name', 118, 'ar', 'Bağlantı 2 URL (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(385, 'data_rows', 'display_name', 118, 'de', 'Bağlantı 2 URL (varsa)', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(386, 'data_rows', 'display_name', 119, 'en', 'Üretildi', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(387, 'data_rows', 'display_name', 119, 'ar', 'Üretildi', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(388, 'data_rows', 'display_name', 119, 'de', 'Üretildi', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(389, 'data_rows', 'display_name', 120, 'en', 'Güncellendi', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(390, 'data_rows', 'display_name', 120, 'ar', 'Güncellendi', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(391, 'data_rows', 'display_name', 120, 'de', 'Güncellendi', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(392, 'data_types', 'display_name_singular', 12, 'en', 'Parça', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(393, 'data_types', 'display_name_singular', 12, 'ar', 'Parça', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(394, 'data_types', 'display_name_singular', 12, 'de', 'Parça', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(395, 'data_types', 'display_name_plural', 12, 'en', 'Parçalar', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(396, 'data_types', 'display_name_plural', 12, 'ar', 'Parçalar', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(397, 'data_types', 'display_name_plural', 12, 'de', 'Parçalar', '2022-12-27 23:50:57', '2022-12-27 23:50:57'),
+(398, 'parts', 'body', 3, 'en', '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam.</p>\n<p><strong>Anna Smith - </strong><em>Product manager</em></p>', '2022-12-27 23:57:01', '2022-12-27 23:57:01'),
+(399, 'parts', 'body', 3, 'ar', '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam.</p>\n<p><strong>Anna Smith - </strong><em>Product manager</em></p>', '2022-12-27 23:57:01', '2022-12-27 23:57:01'),
+(400, 'parts', 'body', 3, 'de', '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam.</p>\n<p><strong>Anna Smith - </strong><em>Product manager</em></p>', '2022-12-27 23:57:01', '2022-12-27 23:57:01'),
+(401, 'parts', 'excerpt', 1, 'en', 'Fusce a quam. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Etiam imperdiet imperdiet orci. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo.', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(402, 'parts', 'excerpt', 1, 'de', 'Fusce a quam. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Etiam imperdiet imperdiet orci. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo.', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(403, 'parts', 'link1_text', 1, 'en', 'Bizi Yakından Tanıyın', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(404, 'parts', 'link1_text', 1, 'ar', 'Bizi Yakından Tanıyın', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(405, 'parts', 'link1_text', 1, 'de', 'Bizi Yakından Tanıyın', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(406, 'parts', 'link1_url', 1, 'en', '#', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(407, 'parts', 'link1_url', 1, 'ar', '#', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(408, 'parts', 'link1_url', 1, 'de', '#', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(409, 'parts', 'link2_text', 1, 'en', 'Bize Ulaşın', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(410, 'parts', 'link2_text', 1, 'ar', 'Bize Ulaşın', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(411, 'parts', 'link2_text', 1, 'de', 'Bize Ulaşın', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(412, 'parts', 'link2_url', 1, 'en', '#', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(413, 'parts', 'link2_url', 1, 'ar', '#', '2022-12-27 23:57:11', '2022-12-27 23:57:11'),
+(414, 'parts', 'link2_url', 1, 'de', '#', '2022-12-27 23:57:11', '2022-12-27 23:57:11');
 
 -- --------------------------------------------------------
 
@@ -1082,13 +1258,13 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `role_id` bigint UNSIGNED DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1098,7 +1274,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin@admin.com', 'users/December2022/aYynLCiP5qXcgCuYJ0rm.png', NULL, '$2y$10$PPb0MYC4GQH9vwRPF.jmT.1aXUKRCYZj4j0/6.ic4bhL5xeuHnur6', 'OQUuV1Bc7d4Bc2xQzfPmBIyyTXBjtZlO8rMxjTSd1348ZKy97qQuvuuGViK2', '{\"locale\":\"tr\"}', '2022-04-27 17:11:15', '2022-12-16 12:21:08');
+(1, 1, 'admin', 'admin@admin.com', 'users/December2022/aYynLCiP5qXcgCuYJ0rm.png', NULL, '$2y$10$PPb0MYC4GQH9vwRPF.jmT.1aXUKRCYZj4j0/6.ic4bhL5xeuHnur6', 'p9BlLX7BUnXowbgTzkzFPlN1m5f91Slr6QJF2Uwxed0FkcsPSy1ZqhQjAioU', '{\"locale\":\"tr\"}', '2022-04-27 17:11:15', '2022-12-16 12:21:08');
 
 -- --------------------------------------------------------
 
@@ -1234,6 +1410,12 @@ ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `parts`
+--
+ALTER TABLE `parts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -1360,13 +1542,13 @@ ALTER TABLE `contacts`
 -- Tablo için AUTO_INCREMENT değeri `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `failed_jobs`
@@ -1384,7 +1566,7 @@ ALTER TABLE `menus`
 -- Tablo için AUTO_INCREMENT değeri `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `migrations`
@@ -1405,10 +1587,16 @@ ALTER TABLE `pages`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `parts`
+--
+ALTER TABLE `parts`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `personal_access_tokens`
@@ -1420,13 +1608,13 @@ ALTER TABLE `personal_access_tokens`
 -- Tablo için AUTO_INCREMENT değeri `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `posts_tags`
 --
 ALTER TABLE `posts_tags`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `roles`
@@ -1456,7 +1644,7 @@ ALTER TABLE `tags`
 -- Tablo için AUTO_INCREMENT değeri `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`

@@ -27,10 +27,26 @@ return [
     'error' => 'Error',
     'pdpa_approval' => 'I have read and accept the PDPA lighting text',
     'personal_data_approval' => 'I agree to share my personal data',
+    'content_required' => 'Content Required',
+    'content_required_long' => 'Content Required Lorem ipsum dolor sit amet consectetur adipisicing elit. Content Not Found Voluptates alias obcaecati hic iste voluptas nulla.',
+    'categories' => 'Categories',
+    'category' => 'Category',
+    'tags'  => 'Tags',
+    'tag' => 'Tag',
+    'comments' => 'Comments',
+    'comment' => 'Comment',
+    'date' => 'Date',
+    'published' => 'Published',
+    'updated' => 'Updated',
 
     /**
      * Form Terms
      */
+    'your_comment' => 'Your Comment',
+    'send_my_comment' => 'Send My Comment',
+    'leave_a_feedback' => 'Leave A Feedback',
+    'leave_your_comment' => 'Leave Your Comment',
+    'comment_form_saved' => 'Your comment has been sent. It will be checked and published by system administrators.',
     'email_address' => 'E-Mail Address',
     'your_email_address' => 'Your E-Mail Address',
     'email' => 'E-Mail',
