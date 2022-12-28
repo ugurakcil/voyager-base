@@ -16,6 +16,9 @@ class FormController extends FrontController
         parent::__contruct();
     }
 
+    /**
+     * E-Mail Şablonunun Bir Demo Görüntüsünü Oluşturur
+     */
     public function testNotificationTheme()
     {
         $mailData = [
@@ -40,13 +43,17 @@ class FormController extends FrontController
         return view('emails.generic', $mailData);
     }
 
+    /**
+     * İletişim Formu Kayıt İşlemi
+     * Dosya işlemleri için file alanlarının commentlerini kaldırabilirsiniz.
+     */
     public function saveContact(Request $req)
     {
         $validator = Validator::make($req->all(), [
             'name' => 'required',
             'area_code' => 'required|max:5',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'email' => 'required|email:rfc,dns|max:255', // 'email' => 'required|email:rfc,dns|unique:contacts|max:255',
+            'email' => 'required|email:rfc,dns|max:255',
             'message' => 'required',
             //'file' => 'max:10000|mimes:doc,docx,pdf,jpg,jpeg,gif,png,txt',
 	        'g-recaptcha-response' => 'required|captcha',
@@ -113,6 +120,9 @@ class FormController extends FrontController
         ]);
     }
 
+    /**
+     * E-Bülten Kayıt İşlemi
+     */
     public function saveNewsletter(Request $req)
     {
         $validator = Validator::make($req->all(), [

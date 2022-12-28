@@ -74,12 +74,7 @@ class SitemapController extends FrontController
         /*
         $contents = array_merge($contentsStarter, [
             [ route('rooms', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('restaurants', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('activities', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('meetings', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('environmentals', $baseSlugs), 'Weekly', '0.8' ],
             [ route('blogList', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('awards', $baseSlugs), 'Monthly', '0.8' ],
             [ route('company', $baseSlugs), 'Weekly', '0.8' ],
         ]);
         */
@@ -139,14 +134,14 @@ class SitemapController extends FrontController
 
     public function allSitemaps()
     {
-        $output = '<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//www.medialogy.io/sitemap-style.xsl"?>
+        $output = '<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//www.WEBSITENAME.com/sitemap-style.xsl"?>
 			<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 				<sitemap>
-					<loc>https://www.medialogy.io/sitemap/tr.xml</loc>
+					<loc>https://www.WEBSITENAME.com/sitemap/tr.xml</loc>
 					<lastmod>2022-11-08T13:43:16+00:00</lastmod>
 				</sitemap>
 				<sitemap>
-					<loc>https://www.medialogy.io/sitemap/en.xml</loc>
+					<loc>https://www.WEBSITENAME.com/sitemap/en.xml</loc>
 					<lastmod>2022-11-08T13:43:16+00:00</lastmod>
 				</sitemap>
 			</sitemapindex>

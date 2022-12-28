@@ -13,9 +13,7 @@ class LanguageController extends FrontController
             return abort(403, 'Language not supported.');
         }
 
-        //Session::put('locale', $locale);
         session(['locale' => $locale]);
-        //Session::flash('locale',$locale); 
 
         $previousUrl = parse_url(url()->previous());
         
