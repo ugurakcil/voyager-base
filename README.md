@@ -145,3 +145,9 @@ TODO: Genel kullanım ve cache sorunları gibi sorunların çözümleri detaylan
 #### Genel Backend Kullanım Bilgileri
 1. Sitenin sabit dil terimlerini düzenlemek, eklemek için `lang` klasöründe `site.php` dosyasını kullanın.
 2. Javascript'e dil terimleri `LOCALIZE` global değişkeni üzerinden obje olarak gelir. Javascript dosyanızı yerelleştirmek için dil terimlerini `lang` klasöründe bulunan `script.php` dosyasından ekleyebilirsiniz. Ardından örn.: `LOCALIZE.hello_world` şeklinde erişebilirsiniz. `contact.js` dosyanızda örnek kullanım bulunmaktadır.
+
+### Yayın Aşamasında
+1. APP_ENV ve APP_DEBUG değerlerini production için değiştirmeyi kesinlikle unutmayın
+2. Yayına alındığında eski storage:link symlinkini silip yenisini yaratın
+3. Tüm eski cacheleri artisan komutları ile temizleyin (optimize)
+4. admin ve publisher şifrelerini yayına atmadan değiştirin, publisher rollerini gözden geçirin. Yeni eklediğiniz alanların rolleri atanamamış olabilir.

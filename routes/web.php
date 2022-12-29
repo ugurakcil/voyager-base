@@ -1,10 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\SitemapController;
 
 /**
  * Dilden bağımsız sayfalar aşağıda tanımlanır
@@ -18,6 +19,7 @@ use App\Http\Controllers\PageController;
 **/
 Route::get('/', [GeneralController::class, 'home'])->name('index');
 Route::get('locale/{locale?}', [LanguageController::class, 'setLocale'])->name('setLocale');
+Route::get('sitemap/{lang}.xml', [SitemapController::class, 'sitemap'])->where('lang', '[a-z]{2}');
 
 /**
  * Form kayıt istekleri bu bölümden yapılır
@@ -47,11 +49,28 @@ Route::middleware('throttle:3333,1')->group(function () {
 Route::group(['prefix' => '{lang}', 'where' => ['lang' => 'en|tr|ar|de']], function() { // [a-zA-Z]{2}
     Route::get('/', [GeneralController::class, 'home'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'show'])->name('page');
-    Route::get('post/{slug}', [PageController::class, 'show'])->name('post');
-    Route::get('tag/{slug}', [PageController::class, 'show'])->name('tag');
-    // Route::get('/example', [GeneralController::class, 'example'])->name('example');
-});
+    Route::get('post/{slug}', [PostController::class, 'show'])->name('post');
+    Route::get('tag/{slug}', [PostController::class, 'tags'])->name('tag');
+    Route::get('category/{slug}', [PostController::class, 'categories'])->name('category');
+    Route::get('search', [PostController::class, 'search'])->name('search');
 
+    // Route::get('/example', [GeneralController::class, 'example'])->name('example');
+
+    /**
+     * Benzer alanları aşağıdaki örneklerdeki gibi gruplayın
+     */
+    /* 
+    Route::group(['prefix' => 'campaigns'], function() {
+        Route::get('/', [CampaignController::class, 'index'])->name('campaigns');
+        Route::get('{slug}', [CampaignController::class, 'show'])->name('campaign');
+    });
+
+    Route::group(['prefix' => 'custom'], function() {
+        Route::get('{customList}', [CustomContentController::class, 'index'])->name('customList');
+        Route::get('{customList}/{slug}', [CustomContentController::class, 'show'])->name('customPage');
+    });
+    */
+});
 
 /**
  * Voyager panel routes

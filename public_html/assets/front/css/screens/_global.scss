@@ -77,12 +77,26 @@ section.about-us {
 section.articles{
     padding: 50px 0;
 
-    .article-list-img{
-        height:200px;
-        border-radius: 5px;
-        margin-bottom:15px;
-        background-size: cover;
-        background-position-y: center;
+    .article-card{
+        cursor:pointer;
+
+        & > div:hover {
+            background-color: lighten($color: $warning, $amount: 20%);
+            @include transitionBg();
+        }
+
+        .article-card-img{
+            height:200px;
+            border-radius: 5px;
+            margin-bottom:15px;
+            background-size: cover;
+            background-position-y: center;
+        }
+
+        a.article-card-title{
+            color: $dark-lighten;
+            text-decoration: none;
+        }
     }
 }
 
@@ -97,7 +111,7 @@ section.testimonials{
 
     h3 {
         display: inline-block;
-        background-color: #ffc107;
+        background-color: $warning;
         padding: 15px 20px;
         border-radius: 5px 5px 0 0;
         margin-bottom: 0;
@@ -105,11 +119,12 @@ section.testimonials{
 }
 
 section.page-header {
-    margin-bottom:50px;
+    margin-bottom: 50px;
     background-color: $dark-lighten-300;
     padding: 40px 0;
     position: relative;
     transition: all 1s;
+    background-size: cover;
 
     &:after {
         content: '\A';
@@ -230,3 +245,4 @@ h3.page-inside-title {
     color: $dark-lighten-200;
   }
 }
+

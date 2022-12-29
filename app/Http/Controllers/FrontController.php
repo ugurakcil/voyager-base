@@ -13,7 +13,25 @@ class FrontController extends Controller
 
     public function __construct()
     {
-        $this->data['assetVersion'] = '1.0.1';
+        /**
+         * Canlıda css, js güncellemesi yaptığınızda 
+         * cache sorunu engellemek için versiyon ekleyin
+         * Denemeler için 3.haneyi, küçük çaplı güncellemeler için 2.haneyi,
+         * büyük çaplı değişiklikleri bildirmek için ilk haneyi bir arttırın
+         */
+        $this->data['assetVersion'] = '0.0.1';
+
+        /**
+         * Proje development modundayken (local),
+         * assetVersion her sayfa her saniye değişir (zero-cache)
+         */
+        if(\App::environment() == 'local') {
+            $this->data['assetVersion'] = md5(time());
+        }
+
+        /**
+         * Default dil yönü tanımlamasıdır
+         */
         $this->data['languageDirection'] = 'ltr';
 
         if(app()->getLocale() == 'ar') {

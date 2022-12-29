@@ -52,4 +52,8 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Category', 'post_category_id');
     }
+
+    public function scopeWebsite($query) {
+        //return $query->where('website_id', Request::header('X-Website', 0));
+    }
 }

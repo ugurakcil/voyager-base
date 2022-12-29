@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Website;
+use Carbon\Carbon;
+
+use App\Models\Page;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
 
 class SitemapController extends FrontController
 {
@@ -15,10 +22,10 @@ class SitemapController extends FrontController
     {
         /*
         * Detect errors first secure layer
-        if(strlen($websiteSlug) > 15) {
-            dd('error: website is wrong');
-        }
         * */
+        if(!array_key_exists($langSlug, \Config::get('app.available_locales'))){
+            return abort(403, 'Language not supported.');
+        }
 
         $website = Website::first();
 
@@ -33,69 +40,77 @@ class SitemapController extends FrontController
         $now = Carbon::now()->toAtomString();
         $url = url('/');
         $baseSlugs = [
-            'website' => $website->slug,
+            //'website' => $website->slug,
             'lang' => $langSlug
+        ];
+
+        $contents = [
+            [route('home', $baseSlugs), 'Daily', '0.8']
         ];
 
         /*
         * pageNames defines data such as title, slug for pages like about us
         * */
-        $pageSlugs = Page::select(['id', 'title', 'slug', 'redirect_url'])
+        $pages = Page::select(['id', 'title', 'slug', 'redirect_url'])
             ->with('translations')->get();
 
-        foreach ($pageSlugs as $pageSlugRow) {
-            $pageNames[$pageSlugRow->id] = [
-                'id' => $pageSlugRow->id,
-                'title' => $pageSlugRow->getTranslatedAttribute('title', $langSlug, $langSlug),
-                'slug' => $pageSlugRow->getTranslatedAttribute('slug', $langSlug, $langSlug)
-            ];
+        foreach ($pages as $page) {
+            array_push($contents, [
+                route('page', array_merge($baseSlugs, ['slug' => $page->slug])),
+                'Weekly',
+                '0.8'
+            ]);
         }
-
-        $contentsStarter = [
-            [route('home', $baseSlugs), 'Daily', '0.8']
-        ];
 
         /*
-        * Base & list Pages
-        if($websiteSlug != 'hotels') {
-            $contentsStarter = [
-                [ route('home', $baseSlugs), 'Daily', '0.8' ]
-            ];
-        } else {
-            $contentsStarter = [
-                [ route('page', array_merge($baseSlugs, [ 'slug' => $pageNames[1]['slug'] ])), 'Weekly', '0.8' ],
-                [ route('page', array_merge($baseSlugs, [ 'slug' => $pageNames[5]['slug'] ])), 'Weekly', '0.8' ]
-            ];
-        }
+        * Categories
         * */
+        $categories = Category::select('id', 'title', 'slug')
+            ->ordered()
+            ->get()
+            ->translate($langSlug);
 
-        $contents = array_merge($contentsStarter, []);
-
-        /*
-        $contents = array_merge($contentsStarter, [
-            [ route('rooms', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('blogList', $baseSlugs), 'Weekly', '0.8' ],
-            [ route('company', $baseSlugs), 'Weekly', '0.8' ],
-        ]);
-        */
-
-        /*
-        * Blog Posts
-        if($websiteSlug == 'hotels') {
-            $blogPosts = BlogContent::select('id', 'title', 'image', 'excerpt', 'slug', 'website_id')
-                ->ordered()
-                ->get()
-                ->translate($langSlug);
-
-            foreach($blogPosts as $post) {
-                array_push($contents, [
-                    route('blogPost', array_merge($baseSlugs, ['slug' => $post->slug])),
-                    'Weekly',
-                    '0.8'
-                ]);
-            }
+        foreach($categories as $category) {
+            array_push($contents, [
+                route('category', array_merge($baseSlugs, ['slug' => $category->slug])),
+                'Daily',
+                '0.8'
+            ]);
         }
+
+        /*
+        * Posts
         * */
+        $posts = Post::select('id', 'title', 'image', 'excerpt', 'slug')
+            ->ordered()
+            ->get()
+            ->translate($langSlug);
+
+        foreach($posts as $post) {
+            array_push($contents, [
+                route('post', array_merge($baseSlugs, ['slug' => $post->slug])),
+                'Weekly',
+                '0.8'
+            ]);
+        }
+
+        /*
+        * Tags
+        * Etiketler çok fazla olacağı için ayrı bir xml grubunda toplanabilir
+        * */
+        $tags = Tag::select('id', 'title', 'slug')
+            ->orderBy('id','desc') // must be updated_at triggered by content
+            ->limit(200)
+            ->get()
+            ->translate($langSlug);
+
+        foreach($tags as $tag) {
+            array_push($contents, [
+                route('tag', array_merge($baseSlugs, ['slug' => $tag->slug])),
+                'Monthly',
+                '0.8'
+            ]);
+        }
 
 
         $contentInside = '';

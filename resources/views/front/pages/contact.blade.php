@@ -71,7 +71,7 @@
                     <div class="p-4">
                     <h4 class="fst-italic">{{__('site.social_media')}}</h4>
                     <ol class="social-media">
-                        @include('front.list.social-media')
+                        @include('front.partials.social-media')
                     </ol>
                     </div>
                 </div><!-- /.position-sticky -->

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * TODO: Need clean code
+ */
 class LanguageController extends FrontController
 {
     public function setLocale(Request $request, $locale){
@@ -39,7 +42,7 @@ class LanguageController extends FrontController
             return redirect()->to(url('/'.$localeUrl).$previousQuery);
         } else if(isset($backSegments[0]) && (!isset($backSegments[1]) || (isset($backSegments[1]) && strlen($backSegments[1]) <= 2))) { // website segmentinden sonra dil segmenti gelir
             $backSegments[1] = $locale;
-            //dd(url(implode('/', $backSegments)).$previousQuery);
+            
             return redirect()->to(url(implode('/', $backSegments)).$previousQuery);
         } else {
             return redirect()->to(url()->previous());

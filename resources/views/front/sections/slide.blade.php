@@ -30,11 +30,11 @@ Seo için zorunludur
         @if(mb_strlen($slideRow->title) > 5)
             <div class="carousel-caption d-none d-md-block">
                 <h5>
-                    {{$slideRow->title}}
+                    {{strtitle($slideRow->title)}}
                 </h5>
 
                 @if(mb_strlen($slideRow->sub_title) > 5)
-                    <h6>{{$slideRow->sub_title}}</h6>
+                    <h6>{{strupper($slideRow->sub_title)}}</h6>
                 @endif
 
                 <p>

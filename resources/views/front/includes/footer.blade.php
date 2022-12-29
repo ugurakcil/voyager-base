@@ -41,7 +41,7 @@
 
                 <h5>{{__('site.social_media')}}</h5>
                 <ul class="nav social-media">
-                    @include('front.list.social-media')
+                    @include('front.partials.social-media')
                 </ul>
 
                 <h5 class="mt-4 mb-2">{{__('site.newsletter_title')}}</h5>

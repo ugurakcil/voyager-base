@@ -9,7 +9,7 @@ Uzun tag alanlarında karışıkları önlemek için kapanış bilgisi eklemek �
     <div class="container">
         <div class="p-4 p-md-5 text-center text-lg-start">
             <div class="text-center">
-                <h3>{{$parts[3]->title}}</h3>
+                <h3>{{strtitle($parts[3]->title)}}</h3>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10">

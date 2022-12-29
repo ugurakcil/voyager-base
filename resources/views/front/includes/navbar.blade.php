@@ -24,6 +24,7 @@
                     {{-- Privacy Policy --}}
                     <x-links.generic
                         type="page"
+                        lettercase="title"
                         :row="$globalPages[4]"/>
 
                 </span>
@@ -69,11 +70,16 @@
         </div>
         <div class=" collapse navbar-collapse" id="navbarNavDropdown">
             <div class="ms-auto d-none d-lg-block">
-                <div class="input-group">
-                    <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" class="form-control border-warning">
-                    <button class="btn btn-warning text-white">{{__('site.search')}}</button>
+            <form action="{{route('search')}}" method="GET">
+                <div class="input-group search-box">
+                    <input type="text" name="search" class="form-control border-warning" 
+                        placeholder="{{__('site.search')}}" 
+                        value="{{request()->get('search')}}">
+
+                    <button class="btn btn-warning text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+            </form>
+
             </div>
             <ul class="navbar-nav ms-auto ">
 
@@ -94,16 +100,18 @@
                 {{-- Post Categories --}}
                 <li class="dropdown choose-language d-inline-block">
                     <a class="btn btn-default text-light dropdown-toggle" href="#" role="button" id="dropdownPostCategories" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{__('site.categories')}}
+                        {{strupper(__('site.categories'))}}
                     </a>
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownPostCategories">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownPostCategories">
 
                         @foreach ($postCategories as $postCategoryRow)
                             {{-- Post Category --}}
                             <x-links.generic
-                                type="post"
-                                a="dropdown-item"
+                                type="category"
+                                li="dropdown-item"
+                                a="d-block"
+                                lettercase="upper"
                                 :row="$postCategoryRow"/>
                         @endforeach
 
