@@ -14,7 +14,7 @@
         "laravel/tinker": "^2.7",
         "spatie/laravel-backup": "^8.1",
         "tcg/voyager": "^1.6",
-        "ugurakcil/voyager-booster": "^0.1.0"
+        "ugurakcil/voyager-booster": "^0.1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

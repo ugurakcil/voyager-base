@@ -21,3 +21,4 @@ yarn-error.log
 /.gitconfig
 /.lesshst
 /.wget-hsts
+/storage/app/backups
