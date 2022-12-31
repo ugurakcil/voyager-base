@@ -22,3 +22,6 @@ yarn-error.log
 /.lesshst
 /.wget-hsts
 /storage/app/backups
+/mail.*
+composer.lock
+/public_ftp
