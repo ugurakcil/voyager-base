@@ -17,7 +17,7 @@
     @php endif; @endphp
     {{-- Genellikle GTM kodlarını hemen alt satıra ekleyin; --}}
 
-    
+
     @include("front.includes.head-tags")
     @yield('pages-styles')
 
@@ -52,6 +52,8 @@
     @if(Request::input('backsite'))
         <meta name="robots" content="noindex">
     @endif
+
+    @yield("extraMeta")
 
 </head>
 <body class="@yield("bodyClass")">

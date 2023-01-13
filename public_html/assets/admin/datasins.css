@@ -884,3 +884,6 @@ a.voyager-x{
 .row-dd-relationship .relationship_details_content.belongsTo label span, .row-dd-relationship .relationship_details_content.hasOneMany label span {
     color: #9ad5d4;
 }
+.tox .tox-promotion{
+    display:none;
+}

@@ -36,5 +36,5 @@
 {{-- !!!Your own CUSTOM STYLE add here!!! --}}
 <link rel="stylesheet" href="{{asset('assets/front/css/global-'.$languageDirection.'.min.css')}}?v={{$assetVersion}}">
 <link rel="stylesheet" href="{{asset('assets/front/css/desktop-'.$languageDirection.'.min.css')}}?v={{$assetVersion}}" media="screen and (min-width: 1200px)">
-<link rel="stylesheet" href="{{asset('assets/front/css/tablet-'.$languageDirection.'.min.css')}}?v={{$assetVersion}}" media="screen and (min-width: 768px) and (max-width: 1199.98px)">
+<link rel="stylesheet" href="{{asset('assets/front/css/tablet-'.$languageDirection.'.min.css')}}?v={{$assetVersion}}" media="screen and (min-width: 768px) and (max-width: 991.98px)">
 <link rel="stylesheet" href="{{asset('assets/front/css/mobile-'.$languageDirection.'.min.css')}}?v={{$assetVersion}}" media="screen and (max-width: 767.98px)">

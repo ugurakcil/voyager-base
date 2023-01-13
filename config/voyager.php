@@ -192,12 +192,13 @@ return [
 
     // datasins.css ve light.css olmak üzere iki tema hazırladım, aşağıdan değiştirilebilir
     'additional_css' => [
-        'assets/admin/datasins.css',
+        'assets/admin/datasins.css?v=1',
     ],
 
     'additional_js' => [
-        'assets/admin/tinymce/plugin.js',
-        'assets/admin/custom.js',
+        'assets/admin/tinymce/plugin.js?v=1',
+        'assets/admin/tinymce/codesample.min.js?v=1',
+        'assets/admin/custom.js?v=1',
     ],
 
     'googlemaps' => [
@@ -234,6 +235,7 @@ return [
           'image/jpeg',
           'image/png',
           'image/gif',
+          'image/webp',
           'image/bmp',
           'video/mp4',
           'application/pdf',

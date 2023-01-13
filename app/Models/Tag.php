@@ -8,10 +8,10 @@ use TCG\Voyager\Traits\Translatable;
 class Tag extends Model
 {
     use Translatable;
-    protected $translatable = ['name', 'slug'];
+    protected $translatable = ['title', 'slug'];
     public $timestamps = false;
 
-    public $searchable      = ['id', 'name', 'slug'];
+    public $searchable      = ['id', 'title', 'slug'];
 
     public function posts()
     {

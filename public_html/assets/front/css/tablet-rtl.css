@@ -1,5 +1,33 @@
 section.testimonials{background-image:url("https://picsum.photos/seed/view2/1200/300")}.example-about-image-wrapper{margin-bottom:30px}/*# sourceMappingURL=tablet-rtl.css.map */*  ve stil özelliklerini buradan ekleyebilirsiniz
 **/
+/**
+ * Tüm boyutlarda yüklenir (_global tanımlı)
+ *  bu yüzden tüm boyutlarda kullanılan değişkenleri buradan ekleyin
+ *
+ * Örneğin renk tanımlamaları hemen hemen tüm boyutlarda aynıdır
+ * Buradan renk tanımlaması yaparak ilgili rengi çekebilirsiniz
+ *
+ * PX tanımlamaları boyutlarda değişkenlik gösterebilir,
+ * bu yüzden direkt ilgili stil dosyanızda tanımlanması daha uygun olur
+ * ancak tüm boyutlarda geçerli bir PX tanımı varsa buraya ekleyin
+ *
+ * Renk isimlendirmesi yaparken renk ismini direkt olarak kullanmayın!
+ * Çünkü bunlar değiştirilebilir oldukları için burada tanımlanıyor.
+ * $blue olarak tanımladığınız bir rengin içeriğinde kırmızıyla değiştirmeniz gerekebilir.
+ * bu durumda ismi mavi içeriği kırmızı olan saçma sapan bir tanımlamanız olur, kafa karıştırır.
+ *
+ * kavramları ve renkleri yakın isimleri -100, -200 ekleyerek arttırabilirsiniz,
+ * rakam arttıkça koyu renk daha koyulaşmalı, açık renk daha açık olmalı,
+ * uzak bir noktaya renk atanacaksa 100,200 atlayıp direkt 500,600 gibi sayı verilebilir
+ * çok fazla detaylanırsa 1000'i aşmayıp tam ara rakamlara girilmeli
+ * 100'ler dolunca -50, 50'ler dolunca -25..
+ *
+ * Bir web sitesinde genellikle 2 veya 3 ana renk olur, diğer renkler ise bunlardan çeşitlendirilir
+ * aşağıda primary sitede en çok kullanılan renktir,
+ * yoğunluğuna göre sırasıyla secondary, tertiary, quaternary, fifth renkleri de tanımlanabilir
+ *
+ * Kullanılmayacak renkleri silebilirsiniz ancak aşağıdaki tanımlara bağlı kalarak renklendirin
+**/
 section.testimonials {
   background-image: url("https://picsum.photos/seed/view2/1200/300");
 }

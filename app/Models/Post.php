@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Visitable;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
+use App\Events\AdminLog;
 
 class Post extends Model
 {
@@ -32,6 +33,37 @@ class Post extends Model
                 ->where('value', 1);
             });
         }
+    }
+
+    public function save(array $options = [])
+    {
+        /**
+         * Voyager durum kayıt hatasını düzeltir
+         */
+        if (!isset($this->status) || (isset($this->status) && !empty($this->status))) {
+            $this->status = 1;
+        }
+
+        /**
+         * Kullanıcının yaptığı işlemi loglar
+         */
+        $operation = $this->exists ? 'update' : 'add'; // işlem türünü alır
+
+        event(new AdminLog($operation, $this->table, $this));
+
+        return parent::save();
+    }
+
+    public function delete(array $options = [])
+    {
+        /**
+         * Kullanıcının yaptığı silme işlemini loglar
+         */
+        $operation = 'delete'; // işlem türünü alır
+
+        event(new AdminLog($operation, $this->table, $this));
+
+        return parent::delete();
     }
 
     public function scopeVisit() {

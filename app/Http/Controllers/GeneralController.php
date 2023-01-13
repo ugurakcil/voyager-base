@@ -22,32 +22,39 @@ class GeneralController extends FrontController
         $this->data['isHome'] = true;
 
         /*
-        * Homepage Contents
+        * Homepage Contents - Example
         * */
         /*
-        $homepage = Homepage::first();
-
-        if($homepage) {
-            $this->data['homepage'] = $this->reorderSeries($homepage->translate(app()->getLocale()));
-	        $this->bodyEngine('homepage');
-        }
+        $this->data['homepage'] = Homepage::first()->translate(app()->getLocale());
+        $this->bodyEngine('homepage');
         */
 
         /*
         Part contents
         */
-        $this->data['parts'] = Part::whereIn('id', [1,2,3])->get()->translate(app()->getLocale())->keyBy('id');
+        $this->data['parts'] = Part
+            ::whereIn('id', [1,2,3])
+            ->get()
+            ->translate(app()->getLocale())->keyBy('id');
 
         /*
         DB queries of posts
         */
-        $this->data['homePosts'] = Post::select(['id', 'title', 'excerpt', 'slug', 'image', 'post_category_id'])
-		    ->limit(3)->get()->translate(app()->getLocale());
+        $this->data['homePosts'] = Post
+            ::select(['id', 'title', 'excerpt', 'slug', 'image', 'post_category_id'])
+            ->latest()
+            ->active()
+            ->limit(3)
+            ->get()
+            ->translate(app()->getLocale());
 
         /*
         * Main Page Slider Data
         * */
-        $this->data['slideList'] = Slide::ordered()->get()->translate(app()->getLocale());
+        $this->data['slideList'] = Slide
+            ::ordered()
+            ->get()
+            ->translate(app()->getLocale());
 
         /*
         * Send all data to view

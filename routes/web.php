@@ -19,7 +19,11 @@ use App\Http\Controllers\SitemapController;
 **/
 Route::get('/', [GeneralController::class, 'home'])->name('index');
 Route::get('locale/{locale?}', [LanguageController::class, 'setLocale'])->name('setLocale');
-Route::get('sitemap/{lang}.xml', [SitemapController::class, 'sitemap'])->where('lang', '[a-z]{2}');
+
+Route::group(['prefix' => 'sitemap'], function() {
+    Route::get('all.xml', [SitemapController::class, 'allSitemaps']);
+    Route::get('{lang}.xml', [SitemapController::class, 'sitemap'])->where('lang', '[a-z]{2}');
+});
 
 /**
  * Form kayıt istekleri bu bölümden yapılır
@@ -59,7 +63,7 @@ Route::group(['prefix' => '{lang}', 'where' => ['lang' => 'en|tr|ar|de']], funct
     /**
      * Benzer alanları aşağıdaki örneklerdeki gibi gruplayın
      */
-    /* 
+    /*
     Route::group(['prefix' => 'campaigns'], function() {
         Route::get('/', [CampaignController::class, 'index'])->name('campaigns');
         Route::get('{slug}', [CampaignController::class, 'show'])->name('campaign');

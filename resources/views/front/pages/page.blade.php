@@ -1,7 +1,7 @@
 @extends('front.layout')
 
 @section('afterTitle', true)
-@section('title', $page->title)
+@section('title', $page->seo_title ? $page->seo_title : $page->title)
 @section('meta_description', $page->meta_description)
 
 @section('bodyClass', 'page')

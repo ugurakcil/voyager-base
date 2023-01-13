@@ -24,6 +24,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \UgurAkcil\VoyagerBooster\Http\Middleware\Locale::class,
+        \App\Http\Middleware\FirstVisitorRules::class,
     ];
 
     /**

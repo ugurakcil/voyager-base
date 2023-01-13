@@ -5,6 +5,14 @@ domReady(function() {
      * Burada devam edin, Kodlarınızı fonksiyon olarak tanımlayıp burada çağırın.
      */
     insertScript('/assets/front/addons/swal.js')
+
+    /**
+     * jQuery global olarak çalıştırılmıyorsa
+     * aşağıdaki gibi sayfa yüklenince çağırılabilir
+    setTimeout(() => {
+        insertScript('/assets/front/addons/jquery/jquery-3.6.1.min.js')
+    }, 500);
+     */
 });
 
 /**

@@ -1,24 +1,28 @@
 .grecaptcha-badge {
-  transform: scale(0.50);
-  transform-origin: 0px 0px;
-  right: -222px !important;
-  bottom: -15px !important;
-}
+    transform: scale(0.50);
+    transform-origin: 0px 0px;
+    right: -222px !important;
+    bottom: -15px !important;
+  }
 
-.btn-pending-approval-wrapper{
-    position:relative;
-    position: relative;
-    display: flex;
-    width: 24%;
-    justify-content: center;
-    margin: auto;
+  .btn-pending-approval-wrapper{
+      position:relative;
+      position: relative;
+      display: flex;
+      width: 24%;
+      justify-content: center;
+      margin: auto;
 
-    .btn-pending-approval-curtain{
-        position:absolute;
-        width:100%;
-        min-height:40px;
-        height:100%;
-        opacity:0.6;
-        background-color: $primary-darken-500;
-    }
-}
+      .btn-pending-approval-curtain{
+          position:absolute;
+          width:100%;
+          min-height:40px;
+          height:100%;
+          opacity:0.6;
+          background-color: $primary-darken-500;
+      }
+
+      @media screen and (max-width: 992px) {
+        width:99%;
+      }
+  }

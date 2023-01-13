@@ -14,13 +14,20 @@ trait Visitable
     public function visit($ip = '')
     {
         if(empty($ip)){
-            $ip = request()->ip();
+            $ip = 0;
+
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
         }
 
         return Visit::firstOrCreate([
             'ip' => $ip,
-            //'created_at' => Carbon::now()->toDateString(),
-
+            'created_at' => Carbon::now()->toDateString(),
             'visitable_id' => $this->id,
             'visitable_type' => (new \ReflectionClass($this))->getName(),
         ]);

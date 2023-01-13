@@ -1,7 +1,7 @@
 @extends('front.layout')
 
 @section('afterTitle', true)
-@section('title', $post->title)
+@section('title', $post->seo_title ? $post->seo_title : $post->title)
 @section('meta_description', $post->meta_description)
 
 @section('bodyClass', 'post')
@@ -69,7 +69,7 @@
                             <a title="{{$postTag->title}}"
                                 class="d-inline-block"
                                 href="{{route('tag', ['lang' => app()->getLocale(), 'slug' => $postTag->slug])}}">
-                                #{{$postTag->title}} 
+                                #{{$postTag->title}}
                             </a>
                         @endforeach
                     </div>

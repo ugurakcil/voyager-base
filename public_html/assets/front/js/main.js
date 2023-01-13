@@ -25,6 +25,14 @@ domReady(function() {
      * Örnektir, silinebilir;
     initScroll()
     */
+
+    /**
+     * Bootstrap Bundle'ı sonradan dahil edebilirsiniz
+     * ister sayfa yüklendiğinde, ister kullanım amacına göre
+    setTimeout(function(){
+        insertScript('/assets/front/addons/bootstrap/js/bootstrap.bundle.min.js')
+    }, 1000)
+     */
 })
 
 $("#newsletter_form").submit(function(event){
