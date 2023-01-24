@@ -17,6 +17,15 @@ class FirstVisitorRules
      */
     public function handle(Request $request, Closure $next)
     {
+        /**
+         * Kullanıcının ilk segment isteği 
+         * kullanılabilir bir dil kısaltması değilse
+         * hiçbir işlem yapmadan bu methodu atla
+         */
+        if(array_key_exists(request()->segment(1), \Config::get('app.available_locales'))) {
+            return $next($request);
+        }
+
         $mainLocale = array_key_first(\Config::get('app.available_locales'));
 
         /**
