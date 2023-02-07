@@ -20,4 +20,8 @@ return [
     'draft'                  => 'Draft',
     'published'              => 'Published',
     'pending'                => 'Pending',
+    'name'                   => 'Name',
+    'value'                  => 'Value',
+    'feature_name'           => 'Feature Name',
+    'feature_content'        => 'Feaure Content',
 ];

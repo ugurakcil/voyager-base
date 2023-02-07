@@ -20,4 +20,8 @@ return [
     'draft'                  => 'مسودة',
     'published'              => 'نشرت',
     'pending'                => 'قيد الانتظار',
+    'name'                   => 'اسم العائلة',
+    'value'                  => 'قيمة',
+    'feature_name'           => 'اسم الميزة',
+    'feature_content'        => 'محتوى الميزة',
 ];
