@@ -47,3 +47,4 @@ access-logs
 /www
 /etc
 /.razor
+/.dotnet
