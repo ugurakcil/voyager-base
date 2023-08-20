@@ -35,15 +35,37 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        @foreach (config('app.available_locales') as $locale => $localeUrl)
-                        @if(app()->getLocale() != $locale)
-                        <li>
-                            <a href="{{route('setLocale', ['locale' => $locale])}}" class="dropdown-item" title="{{$locale}}">
-                                {{strupper($locale)}}
-                            </a>
-                        </li>
+                        @if(isset($translationsCurrentPage))
+                            @foreach($translationsCurrentPage as $localeKey => $localeContent)
+                            <li>
+                                @if(app()->getLocale() != $localeKey)
+                                    <a
+                                    class="dropdown-item"
+                                    rel="alternate"
+                                    hreflang="{{ $localeKey }}"
+                                    href="{{ $localeContent->route }}"
+                                    title="{{ $localeContent->title }}">
+                                        {{ strupper($localeContent->language) }}
+                                    </a>
+                                @endif
+                            </li>
+                            @endforeach
+                        @else
+                            @foreach(config('app.available_locales') as $localeKey => $localeVal)
+                            <li>
+                                @if(app()->getLocale() != $localeKey)
+                                    <a
+                                    class="dropdown-item"
+                                    rel="alternate"
+                                    hreflang="{{ $localeKey }}"
+                                    href="{{ route('setLocale', ['locale' => $localeKey]) }}"
+                                    title="{{ $localeVal }}">
+                                        {{ strupper($localeVal) }}
+                                    </a>
+                                @endif
+                            </li>
+                            @endforeach
                         @endif
-                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -72,8 +94,8 @@
             <div class="ms-auto d-none d-lg-block">
             <form action="{{route('search')}}" method="GET">
                 <div class="input-group search-box">
-                    <input type="text" name="search" class="form-control border-warning" 
-                        placeholder="{{__('site.search')}}" 
+                    <input type="text" name="search" class="form-control border-warning"
+                        placeholder="{{__('site.search')}}"
                         value="{{request()->get('search')}}">
 
                     <button class="btn btn-warning text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

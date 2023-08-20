@@ -16,7 +16,7 @@ return [
     'newsletter_text' => 'ملخص شهري لما هو جديد ومثير منا.',
     'newsletter_saved' => 'لقد وصلنا عنوان بريدك الإلكتروني. سنخبرك عن خدماتنا وحملاتنا.',
     'subscribe' => 'الإشتراك',
-    'copyright' => '© :year CompanyName كل الحقوق محفوظة.',
+    'copyright' => '© :year :company كل الحقوق محفوظة.',
     'corporate' => 'شركة كبرى',
     'user_aggrements' => 'اتفاقيات المستخدم',
     'social_media' => 'وسائل التواصل الاجتماعي',
@@ -74,4 +74,5 @@ return [
     'section_team_text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     'section_testimonials_title' => 'الزبائن سعداء',
     'get_to_know_us_better'      => 'سوف تحظى بفرصة لتعرفنا أكثر',
+    'table_of_contents' => 'جدول المحتويات',
 ];

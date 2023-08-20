@@ -35,6 +35,20 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            /*
+            if(preg_match('/ugurakcil.co.uk/', request()->server()['SERVER_NAME'])){
+                Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/en.php'));
+            }
+
+            if(preg_match('/ugurakcil.com/', request()->server()['SERVER_NAME'])){
+                Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/tr.php'));
+            }
+            */
         });
     }
 

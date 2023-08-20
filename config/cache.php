@@ -19,6 +19,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Cache Time-To-Live (TTL) (@datasins)
+    |--------------------------------------------------------------------------
+    |
+    | This option sets the default time-to-live (in seconds) for cached items.
+    | If a cached item is not accessed before its TTL expires, it will be
+    | considered expired and will be removed from the cache store.
+    |
+    */
+
+    'ttl' => env('CACHE_TTL', 2), // 3600
+
+    /*
+    |--------------------------------------------------------------------------
     | Cache Stores
     |--------------------------------------------------------------------------
     |

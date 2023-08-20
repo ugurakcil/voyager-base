@@ -20,8 +20,4 @@ return [
     'draft'                  => 'Entwurf',
     'published'              => 'Veröffentlicht',
     'pending'                => 'Ausstehend',
-    'name'                   => 'Name',
-    'value'                  => 'Wert',
-    'feature_name'           => 'Feature-Name',
-    'feature_content'        => 'Feature-Inhalt',
 ];

@@ -90,6 +90,12 @@ Not: savePath klasörü aktif kullanılmamakta fakat planlanmaktadır. CSS çık
         "extensionName": ".css",
         //"savePath": "~/../css/"
         },
+        // You can add more
+        {
+        "format": "compressed",
+        "extensionName": ".css",
+        //"savePath": "/assets/styles/css"
+        },
         // More Complex
         {
         "format": "compressed",
@@ -104,8 +110,7 @@ Not: savePath klasörü aktif kullanılmamakta fakat planlanmaktadır. CSS çık
         "**/History/**",
         "**/vendor/**",
         "**/front/fonts/**",
-    ],
-    "liveSassCompile.settings.generateMap": true,
+   ],
     "editor.mouseWheelZoom": true,
     "editor.fontSize": 14,
     "window.zoomLevel": 1,

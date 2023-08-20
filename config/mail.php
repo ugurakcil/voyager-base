@@ -42,8 +42,9 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN'),
 
-            /* @datasins: ssl error */
+            /* SSL Error Fix (@datasins) */
             'auth_mode'     => null,
             'verify_peer'   => false,
         ],

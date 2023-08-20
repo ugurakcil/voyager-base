@@ -43,15 +43,15 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
-| Converting public function to public_html (ugurakcil)
+| Converting public function to public_html (@datasins)
 |--------------------------------------------------------------------------
 |
-| It converts the default public directory to public_html 
+| It converts the default public directory to public_html
 | in accordance with panels such as cpanel, cyberpanel, etc.
 |
 */
-$app->bind('path.public', function() { 
-    return base_path().'/public_html'; 
+$app->bind('path.public', function() {
+    return base_path().'/public_html';
 });
 
 /*

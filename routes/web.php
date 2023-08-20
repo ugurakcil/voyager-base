@@ -50,13 +50,16 @@ Route::middleware('throttle:3333,1')->group(function () {
  * Eğer route aktif olmazsa tarayıcıdan şunu çalıştırın;
  * thiswebsiteaddress.com/artisan/route-clear
 **/
-Route::group(['prefix' => '{lang}', 'where' => ['lang' => 'en|tr|ar|de']], function() { // [a-zA-Z]{2}
+Route::group(['prefix' => '{lang}', 'where' => ['lang' => 'en|tr|ar|de']], function () { // [a-zA-Z]{2}
     Route::get('/', [GeneralController::class, 'home'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'show'])->name('page');
+
+    Route::get('post', [PostController::class, 'all'])->name('all');
     Route::get('post/{slug}', [PostController::class, 'show'])->name('post');
     Route::get('tag/{slug}', [PostController::class, 'tags'])->name('tag');
     Route::get('category/{slug}', [PostController::class, 'categories'])->name('category');
     Route::get('search', [PostController::class, 'search'])->name('search');
+
 
     // Route::get('/example', [GeneralController::class, 'example'])->name('example');
 

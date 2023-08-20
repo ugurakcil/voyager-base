@@ -18,23 +18,23 @@ class FirstVisitorRules
     public function handle(Request $request, Closure $next)
     {
         /**
-         * Kullanıcının ilk segment isteği 
+         * Kullanıcının ilk segment isteği
          * kullanılabilir bir dil kısaltması değilse
          * hiçbir işlem yapmadan bu methodu atla
          */
-        if(array_key_exists(request()->segment(1), \Config::get('app.available_locales'))) {
+        if(! array_key_exists(request()->segment(1), \Config::get('app.available_locales'))) {
             return $next($request);
         }
 
-        $mainLocale = array_key_first(\Config::get('app.available_locales'));
-
         /**
-         * Kullanıcı bir dil session'ına sahip,
+         * Kullanıcı bir dil seçimine sahip,
          * Bu session default dil değil,
          * ve anasayfaya girmeye çalışıyor.
          * Bu durumda ilgili dil sayfasına yönlendirir
          */
-        if(Session::has('locale') && Session::get('locale') != $mainLocale && !request()->segment(1)) {
+        $mainLocale = array_key_first(\Config::get('app.available_locales'));
+
+        if(app()->getLocale() != $mainLocale && !request()->segment(1)) {
             return redirect()->route('home', ['lang' => Session::get('locale')]);
         }
 
@@ -43,7 +43,7 @@ class FirstVisitorRules
          * ve ilgili dil sayfasına giriş yapıyor
          * onu index'e gönder
          */
-        if(Session::has('locale') && Session::get('locale') == $mainLocale && request()->segment(1) && !request()->segment(2)) {
+        if(app()->getLocale() == $mainLocale && request()->segment(1) && !request()->segment(2)) {
             return redirect()->route('index');
         }
 

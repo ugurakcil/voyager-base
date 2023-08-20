@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
+
 use App\Models\Website;
 use App\Models\Page;
 use App\Models\Category;
-use Illuminate\Support\Facades\Storage;
 
 class FrontController extends Controller
 {
     protected $data = [];
 
-    public function __construct()
-    {
+    public function __construct() {
         /**
-         * Canlıda css, js güncellemesi yaptığınızda 
+         * Canlıda css, js güncellemesi yaptığınızda
          * cache sorunu engellemek için versiyon ekleyin
          * Denemeler için 3.haneyi, küçük çaplı güncellemeler için 2.haneyi,
          * büyük çaplı değişiklikleri bildirmek için ilk haneyi bir arttırın
@@ -39,19 +39,47 @@ class FrontController extends Controller
         }
 
         # This Website's Generic Settings
-        $this->data['website'] = Website::first()->translate(app()->getLocale());
+        $this->data['websiteTranslations'] = Cache::remember('websiteTranslations', config('cache.ttl'), function () {
+            return Website
+                ::with('translations')
+                ->first();
+        });
+
+        $this->data['website'] = $this->data['websiteTranslations']->translate(app()->getLocale());
 
         /*
         Database query of post categories to be used in areas such as navbar and site-wide
         */
-        $this->data['postCategories'] = Category::select(['id', 'title', 'slug'])
+        $this->data['postCategories'] = Cache
+        ::remember('postCategories'.app()->getLocale(), config('cache.ttl'), function () {
+            return Category::select(['id', 'title', 'slug'])
             ->get()->translate(app()->getLocale())->keyBy('id');
+        });
 
         /*
         globalPages defines data such as title, slug for pages like about us
         */
-        $this->data['globalPages'] = Page::select(['id', 'title', 'slug', 'redirect_url'])
-            ->get()->translate(app()->getLocale())->keyBy('id');
+        $this->data['globalPages'] = Cache
+        ::remember('globalPages'.app()->getLocale(), config('cache.ttl'), function () {
+            return Page::select(['id', 'title', 'slug', 'redirect_url'])
+                ->get()->translate(app()->getLocale())->keyBy('id');
+        });
+
+        // $this->data['corporateMenu']    = $this->corporateMenu();
+    }
+
+    // example corporate menu
+    protected function corporateMenu() {
+        return [
+            [
+                'title' => $this->data['globalPages'][1]->title,
+                'route' => route('page', ['slug' => $this->data['globalPages'][1]->slug])
+            ],
+            [
+                'title' => __('site.management_team'),
+                'route' => route('managers')
+            ],
+        ];
     }
 
     /*
@@ -86,7 +114,9 @@ class FrontController extends Controller
     protected function bodyEngine($bodyDirective) {
         $this->data[$bodyDirective]->body = str_replace(
             ['[pdf]'],
-            ['<img height="64" width="64" src="'.url('/assets/front/assets/icons/pdf-flat/64x64.png').'" class="pdf-class" alt="Download SideStar Document">'],
+            ['<img height="64" width="64"
+                src="'.url('/assets/front/assets/icons/pdf-flat/64x64.png').'"
+                class="pdf-class" alt="Download Document">'],
             $this->data[$bodyDirective]->body);
     }
 }

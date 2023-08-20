@@ -20,8 +20,4 @@ return [
     'draft'                  => 'Taslak',
     'published'              => 'Yayında',
     'pending'                => 'Askıda',
-    'name'                   => 'Adı',
-    'value'                  => 'Değer',
-    'feature_name'           => 'Özellik Adı',
-    'feature_content'        => 'Özellik İçeriği',
 ];

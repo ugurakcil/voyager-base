@@ -41,8 +41,8 @@
             @foreach($homePosts as $homePost)
             <div class="col-md-4 mb-5 pt-3 pb-3" onclick="location.href='{{route('post', ['slug' => $homePost->slug])}}'">
                 <div class="article-card-img" style="background-image:url('{{Storage::url(afterImageName($homePost->image, 'medium'))}}')"></div>
-                
-                {{-- 
+
+                {{--
                 location.href ile bir kutuya yönlendirme verilse dahi
                 seo için bu url'e <a href> ile erişim sağlanmak zorundadır
                 --}}

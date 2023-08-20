@@ -16,7 +16,7 @@ return [
     'newsletter_text' => 'Monatliche Übersicht über Neuigkeiten und Aufregendes von uns.',
     'newsletter_saved' => 'Ihre E-Mail-Adresse hat uns erreicht. Wir informieren Sie über unsere Dienstleistungen und Aktionen.',
     'subscribe' => 'Abonnieren',
-    'copyright' => '© :year Company, Inc. Alle Rechte vorbehalten.',
+    'copyright' => '© :year :company Inc. Alle Rechte vorbehalten.',
     'corporate' => 'Unternehmen',
     'user_aggrements' => 'Benutzervereinbarungen',
     'social_media' => 'Sozialen Medien',
@@ -74,4 +74,5 @@ return [
     'section_team_text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     'section_testimonials_title' => 'Zufriedene Kunden',
     'get_to_know_us_better'      => 'Lernen Sie uns besser kennen',
+    'table_of_contents' => 'Inhaltsverzeichnis',
 ];

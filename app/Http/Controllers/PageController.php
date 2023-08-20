@@ -19,22 +19,44 @@ class PageController extends FrontController
         * Blocks URLs that are too long or too short
         * as a general security measure
         * */
-        if(mb_strlen($slug) > 90 || mb_strlen($slug) < 2)
+        if (mb_strlen($slug) > 90 || mb_strlen($slug) < 2) {
             abort(400);
+        }
 
         /*
         * Searches the requested URL
         * in the language table and returns the corresponding page
         * */
         $page = Page::whereTranslation('slug', $slug)
-            ->website($this->data['website']->id)->first();
+            ->website($this->data['website']->id)
+            ->with('translations')
+            ->first();
+
+        /*
+        It prepares the language equivalents of this page
+        directly for the language change.
+        These language equivalents are prepared
+        for the use of hreflang for seo purposes.
+        */
+        $this->data['translationsCurrentPage'] = [];
+        foreach (\Config::get('app.available_locales') as $langKey => $langVal) {
+            $this->data['translationsCurrentPage'][$langKey] = (object) [
+                'route' => route('page', [
+                    'lang' => $langKey,
+                    'slug' => $page->getTranslatedAttribute('slug', $langKey, 'tr')
+                ]),
+                'title' => $page->getTranslatedAttribute('title', $langKey, 'tr'),
+                'language' => $langVal,
+            ];
+        }
 
         /*
         * Returns an error if the page requested
         * by the user is not found
         * */
-        if(empty($page))
+        if (empty($page)) {
             abort(404);
+        }
 
         /*
         * Fetch localized content based on user selection
