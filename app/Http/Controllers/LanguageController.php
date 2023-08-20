@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Session;
 
 /**
  * TODO: Need clean code
@@ -18,7 +17,7 @@ class LanguageController extends FrontController
 
         $mainLocale = array_key_first(Config::get('app.available_locales'));
 
-        session(['locale' => $locale]);
+        //session(['locale' => $locale]);
 
         $previousUrl = parse_url(url()->previous());
 
