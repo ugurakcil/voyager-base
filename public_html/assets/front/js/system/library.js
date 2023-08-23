@@ -15,7 +15,7 @@ var loadedStyles = [];
  * @param {string} src
  * @returns void
  */
-function insertScript(src, type = 'text/javascript') {
+function insertScript(src, type = 'text/javascript', callback) {
     // If we have previously attempted injection, then do nothing
     if (loadedScripts.indexOf(src) !== -1)
       return;
@@ -23,6 +23,14 @@ function insertScript(src, type = 'text/javascript') {
     var js = document.createElement("script");
     js.type = type;
     js.src = src;
+
+    // If a callback function is provided, execute it when the script has finished loading
+    if (typeof callback === 'function') {
+        js.onload = function() {
+            callback();
+        };
+    }
+
     document.body.appendChild(js);
 
     // Push script to array
@@ -36,17 +44,25 @@ function insertScript(src, type = 'text/javascript') {
  * @param {string} src
  * @returns void
  */
-function insertStyle(src) {
+function insertStyle(src, type = 'module', callback) {
     // If we have previously attempted injection, then do nothing
     if (loadedStyles.indexOf(src) !== -1)
       return;
 
     var css = document.createElement("link");
-    css.type = "module";
+    css.type = type;
     css.href = src;
     css.type = "text/css";
     css.rel = "stylesheet";
     css.media = "screen,print";
+
+    // Execute callback function when the style has finished loading
+    if (typeof callback === 'function') {
+        css.onload = function() {
+            callback();
+        };
+    }
+
     document.body.appendChild(css);
 
     // Push script to array
@@ -83,9 +99,11 @@ function makeStyleAllPhoneNumbers() {
         return;
 
     insertStyle('/assets/front/addons/intl-tel/build/css/intlTelInput.min.css')
-    insertScript('/assets/front/addons/intl-tel/build/js/intlTelInput.min.js')
     insertScript('/assets/front/addons/Inputmask/dist/inputmask.min.js')
+    insertScript('/assets/front/addons/intl-tel/build/js/intlTelInput.min.js', 'text/javascript', applyPhoneStylesToInputs)
+}
 
+function applyPhoneStylesToInputs() {
     setTimeout(function(){
         var phoneNumbers = document.querySelectorAll("input[type=tel]");
 
