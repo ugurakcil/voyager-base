@@ -240,3 +240,6 @@ div[data-field-name="image"] img{
     background-color: transparent;
     border-bottom: none;
 }
+.panel.widget .panel-content{
+    z-index: 0;
+}
