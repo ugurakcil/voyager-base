@@ -39,6 +39,7 @@
 .voyager .panel.panel-dark .panel-heading,
 .voyager .panel.panel-info .panel-heading{
     border-radius:5px;
+    background-color: #323a44;
 }
 .app-container .content-container .side-menu .navbar-nav li a .icon{
     font-size:23px;
@@ -110,4 +111,132 @@
 #search-input button{
     padding: 1px 6px 0 11px;
     right: 28px;
+}
+.tox .tox-promotion, .tox-statusbar__branding{
+    display:none;
+}
+.app-container.expanded .content-container .side-menu{
+    z-index:6;
+}
+.app-container.expanded .content-container .navbar-top{
+    z-index:5;
+}
+#voyager-loader{
+    opacity: 0.9;
+    left: 0 !important;
+}
+.voyager .navbar.navbar-default .navbar-header .navbar-brand, .voyager .navbar .navbar-header .navbar-brand{
+    background-color: #21292e;
+    color: #FFF;
+}
+.app-container.expanded .content-container .side-menu .navbar-header .navbar-brand .title{
+    font-weight: 500;
+}
+.breadcrumb{
+    background-color: #21292e;
+    color: #FFF;
+}
+.voyager .breadcrumb a{
+    color: #fec526;
+}
+.breadcrumb li:last-child{
+    color: #fff0c6;
+}
+.btn.btn-primary{
+    background-color: #fec526;
+    color: #21292e !important;
+}
+.btn.btn-primary.active{
+    background-color: #21292e;
+    color: #fec526 !important;
+}
+.voyager .btn.btn-warning{
+    background: #707070;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    background-color: #323a44;
+    border: 1px solid #000;
+    color: #fec526;
+    font-size: 16px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    color: #fec526;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{
+    color:white;
+}
+.app-container .side-body{
+    background-color: #fafafa;
+}
+.app-container.expanded .content-container .navbar-top{
+    background-color: #fffffe30;
+    box-shadow: 0px 3px 15px -3px rgba(0,0,0,0.1);
+}
+.voyager .navbar .navbar-nav .dropdown-menu, .voyager .navbar.navbar-default .navbar-nav .dropdown-menu {
+    background-color: #ffffffe8;
+    border-radius: 15px;
+}
+.panel-title {
+    font-size: 16px;
+    color: #4d5258;
+}
+.panel-bordered>.panel-body {
+    font-size: 14px;
+    color: #4d5258;
+    padding-top:10px;
+    padding-bottom:20px;
+}
+
+.panel-bordered>.panel-body label {
+    padding:10px 0;
+}
+div[data-field-name="image"]{
+    margin-top:10px;
+}
+div[data-field-name="image"] img{
+    width:100% !important;
+    max-width:100% !important;
+}
+.remove-single-image{
+    background-color: #ffffff;
+    border-bottom-right-radius: 2px;
+    padding: 1px 7px 0 7px;
+    color: #323a44;
+    font-size:25px;
+    transition: all 0.2s ease-in-out;
+    margin-top:3px;
+    margin-left:2px;
+    opacity: 0.6;
+}
+.remove-single-image:hover{
+    opacity: 1;
+}
+.voyager .navbar .navbar-nav>li:hover>a, .voyager .navbar.navbar-default .navbar-nav>li:hover>a{
+    color: #fec526;
+}
+.table-hover>tbody>tr{
+    transition: all 0.2s ease-in-out;
+}
+.table-hover>tbody>tr:hover, .table>tbody>tr.active>td, .table>tbody>tr.active>th, .table>tbody>tr>td.active, .table>tbody>tr>th.active, .table>tfoot>tr.active>td, .table>tfoot>tr.active>th, .table>tfoot>tr>td.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td, .table>thead>tr.active>th, .table>thead>tr>td.active, .table>thead>tr>th.active{
+    background-color: #fff7e2;
+}
+.voyager .panel.panel-default .accordion-heading {
+    background-color: #f3c138;
+    border-bottom: 1px solid #ffdf89;
+}
+#accordion .accordion-title {
+    color: #21292e;
+    padding:0;
+}
+#accordion .accordion-title a{
+    display: inline-block;
+    width: 100%;
+    padding: 20px;
+}
+#accordion .accordion-title a:focus{
+    text-decoration: none;
+}
+#accordion .panel-body .panel-heading {
+    background-color: transparent;
+    border-bottom: none;
 }

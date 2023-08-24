@@ -5,7 +5,7 @@
  * !!! burada ekleme, düzenleme işlemi yapmayın !!!
  */
 return [
-    'everything_seems_ok'    => 'Herşey Yolunda Görünüyor',
+    'everything_seems_ok'    => 'Her Şey Yolunda Görünüyor',
     'details'                => 'Detaylar',
     'send'                   => 'Gönder',
     'seo_content'            => 'SEO İçerikleri',
@@ -20,4 +20,5 @@ return [
     'draft'                  => 'Taslak',
     'published'              => 'Yayında',
     'pending'                => 'Askıda',
+    'content_group'          => 'İçerik Grubu',
 ];

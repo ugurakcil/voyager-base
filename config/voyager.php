@@ -192,7 +192,7 @@ return [
 
     // datasins.css ve light.css olmak üzere iki tema hazırladım, aşağıdan değiştirilebilir
     'additional_css' => [
-        'assets/admin/datasins.css?v=1',
+        'assets/admin/light.css?v=1',
     ],
 
     'additional_js' => [

@@ -1,6 +1,7 @@
 // ugurakcil
 
 function tinymce_init_callback(editor) {
+    var colorScheme = 'light';
     editor.remove();
     editor = null;
 
@@ -9,8 +10,8 @@ function tinymce_init_callback(editor) {
         selector: 'textarea.richTextBox',
         base_url: $('meta[name="assets-path"]').attr('content')+'?path=js/',
         min_height: 700,
-        skin: "oxide-dark",
-        content_css: "dark",
+        skin: colorScheme == 'dark' ? "oxide-dark" : "oxide",
+        content_css: colorScheme,
         resize: 'vertical',
         plugins: 'link image code table lists bootstrap4grid codesample',
         codesample_languages: [
@@ -104,7 +105,7 @@ function tinymce_init_callback(editor) {
         image_title: true,
         content_css: [
             'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
-            window.location.origin + '/assets/admin/datasins.css',
+            (colorScheme == 'dark') ? window.location.origin + '/assets/admin/datasins.css' : window.location.origin + '/assets/admin/light.css',
             window.location.origin + '/assets/admin/tinymce/prism.css'
         ]
     });

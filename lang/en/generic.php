@@ -20,4 +20,5 @@ return [
     'draft'                  => 'Draft',
     'published'              => 'Published',
     'pending'                => 'Pending',
+    'content_group'          => 'Content Group',
 ];

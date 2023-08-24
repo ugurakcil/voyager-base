@@ -1,4 +1,6 @@
 @php
+    // @datasins
+
     $edit = !is_null($dataTypeContent->getKey());
     $add  = is_null($dataTypeContent->getKey());
     $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
@@ -7,6 +9,17 @@
         'slug', 'status', 'featured', 'image',
         'meta_description', 'seo_title'
     ];
+
+    $groupNumbers = [];
+
+    foreach ($dataTypeRows as $row) {
+        if (preg_match('/group_row(\d+)/', $row->field, $matches)) {
+            $groupNumbers[] = (int) $matches[1];
+        }
+    }
+
+    $groupNumbers = array_unique($groupNumbers);
+    sort($groupNumbers);
 @endphp
 
 @extends('voyager::master')
@@ -80,9 +93,38 @@
                     </div><!-- .panel -->
                     @endisset
 
+                    <div class="panel-group" id="accordion">
+                        @foreach ($groupNumbers as $number)
+                            <div class="panel panel-default">
+                                <div class="panel-heading accordion-heading">
+                                    <h4 class="panel-title accordion-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $number }}">
+                                            {{__('generic.content_group')}} #{{ $number }}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse{{ $number }}" class="panel-collapse collapse @if($number === $groupNumbers[0]) in @endif ?>">
+                                    <div class="panel-body">
+                                        @foreach($dataTypeRows as $row)
+                                            @if(!in_array($row->field, $exclude) && strpos($row->field, "group_row{$number}_") === 0)
+                                                @if(!isset($row->details->column) ||
+                                                !isset($dataTypeContent->baseCategoryName) ||
+                                                $row->details->column != $dataTypeContent->baseCategoryName)
+                                                    @include('voyager::formfields.panel-inside', [
+                                                        'currentFieldName'  => $row->field
+                                                    ])
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
                     <div class="panel">
                         @foreach($dataTypeRows as $row)
-                            @if(!in_array($row->field, $exclude))
+                            @if(!in_array($row->field, $exclude) && strpos($row->field, 'group_row') !== 0)
                                 @if(!isset($row->details->column) ||
                                 !isset($dataTypeContent->baseCategoryName) ||
                                 $row->details->column != $dataTypeContent->baseCategoryName)
