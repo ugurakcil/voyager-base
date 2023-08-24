@@ -243,3 +243,6 @@ div[data-field-name="image"] img{
 .panel.widget .panel-content{
     z-index: 0;
 }
+.mce-content-body{
+    padding:15px;
+}
