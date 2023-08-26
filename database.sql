@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 20 Ağu 2023, 19:23:23
+-- Üretim Zamanı: 26 Ağu 2023, 02:55:27
 -- Sunucu sürümü: 8.0.34-0ubuntu0.22.04.1
 -- PHP Sürümü: 8.2.9
 
@@ -278,6 +278,13 @@ CREATE TABLE `logs` (
   `user_id` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `logs`
+--
+
+INSERT INTO `logs` (`id`, `table_name`, `operation_name`, `data_id`, `user_id`, `created_at`) VALUES
+(1, 'posts', 'update', 4, 1, '2023-08-20 19:33:18');
 
 -- --------------------------------------------------------
 
@@ -749,7 +756,7 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`id`, `title`, `slug`, `excerpt`, `body`, `seo_title`, `meta_description`, `author_id`, `status`, `image`, `post_category_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 'Phasellus blandit leo ut odio', 'phasellus-blandit-leo-ut-odio', 'Fusce ac felis sit amet ligula pharetra condimentum. Duis vel nibh at velit scelerisque suscipit. Nam pretium turpis et arcu', '<p>Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Curabitur a felis in nunc fringilla tristique. In hac habitasse platea dictumst. Pellentesque auctor neque nec urna.</p>\n<p>Curabitur a felis in nunc fringilla tristique. Nulla sit amet est. Aliquam lobortis. Vivamus laoreet.</p>\n<p>Cras dapibus. Curabitur nisi. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Phasellus tempus.</p>', '', '', NULL, 1, 'posts/December2022/JXIi9kglDOXImWnB6qpj.jpg', 1, '2022-12-27 11:15:08', '2022-12-27 11:15:08', NULL),
 (3, 'Vestibulum suscipit nulla quis orci', 'vestibulum-suscipit-nulla-quis-orci', 'Vestibulum suscipit nulla quis orci. Pellentesque ut neque. Vivamus elementum semper nisi. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi', '<p>Fusce ac felis sit amet ligula pharetra condimentum. Cras sagittis. Sed cursus turpis vitae tortor. Nullam tincidunt adipiscing enim. Nunc nec neque.</p>\n<p>Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Quisque id odio. Fusce commodo aliquam arcu. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.</p>\n<p>Etiam imperdiet imperdiet orci. Praesent egestas tristique nibh. Curabitur at lacus ac velit ornare lobortis. Maecenas nec odio et ante tincidunt tempus. Aenean imperdiet.</p>\n<p>Fusce fermentum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Curabitur at lacus ac velit ornare lobortis. Maecenas malesuada. Ut varius tincidunt libero.</p>', '', '', NULL, 1, 'posts/December2022/VEV5vMVQsxbofQwTjpzA.jpg', 1, '2022-12-27 11:16:18', '2022-12-27 11:16:18', NULL),
-(4, 'Türkçe başlık habitant morbi tristiquev', 'turkce-baslik-habitant-morbi-tristiquev', 'Quisque id mi. Nullam vel sem. Aenean ut eros et nisl sagittis vestibulum. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Vivamus in erat ut urna cursus vestibulum.', '<p>In ac felis quis tortor malesuada pretium. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Praesent congue erat at massa. Nam pretium turpis et arcu. Sed in libero ut nibh placerat accumsan.</p>\n<p>Etiam iaculis nunc ac metus. In ut quam vitae odio lacinia tincidunt. Etiam rhoncus. Nunc interdum lacus sit amet orci. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.</p>\n<p>Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Cras id dui. Phasellus a est. Fusce ac felis sit amet ligula pharetra condimentum. Curabitur a felis in nunc fringilla tristique.</p>\n<p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In hac habitasse platea dictumst. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Ut non enim eleifend felis pretium feugiat. Phasellus nec sem in justo pellentesque facilisis.</p>', '', '', NULL, 1, 'posts/December2022/huRdMqDSG2ueSDO0AZwk.jpg', 1, '2022-12-27 11:17:00', '2022-12-27 11:19:37', NULL);
+(4, 'Türkçe test başlık şekil morbi tristiquev', 'turkce-test-baslik-sekil-morbi-tristiquev', 'Quisque id mi. Nullam vel sem. Aenean ut eros et nisl sagittis vestibulum. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Vivamus in erat ut urna cursus vestibulum.', '<p>In ac felis quis tortor malesuada pretium. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Praesent congue erat at massa. Nam pretium turpis et arcu. Sed in libero ut nibh placerat accumsan.</p>\n<p>Etiam iaculis nunc ac metus. In ut quam vitae odio lacinia tincidunt. Etiam rhoncus. Nunc interdum lacus sit amet orci. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.</p>\n<p>Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Cras id dui. Phasellus a est. Fusce ac felis sit amet ligula pharetra condimentum. Curabitur a felis in nunc fringilla tristique.</p>\n<p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In hac habitasse platea dictumst. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Ut non enim eleifend felis pretium feugiat. Phasellus nec sem in justo pellentesque facilisis.</p>', '', '', NULL, 1, 'posts/December2022/huRdMqDSG2ueSDO0AZwk.jpg', 1, '2022-12-27 11:17:00', '2023-08-20 16:33:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -822,11 +829,11 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
-(5, 'admin.bg_image', 'Admin Background Image', '', '', 'image', 5, 'Admin'),
-(6, 'admin.title', 'Admin Title', 'Base System', '', 'text', 1, 'Admin'),
+(5, 'admin.bg_image', 'Admin Background Image', 'settings/August2023/Gfs8zdAcVGW3Q6yENM9A.jpg', '', 'image', 5, 'Admin'),
+(6, 'admin.title', 'Admin Title', 'DEXMAN', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Welcome to Base', '', 'text', 2, 'Admin'),
-(8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
-(9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
+(8, 'admin.loader', 'Admin Loader', 'settings/August2023/EZIIZPDSYU96OrzVOM5S.png', '', 'image', 3, 'Admin'),
+(9, 'admin.icon_image', 'Admin Icon Image', 'settings/August2023/Gloa2Rb2m5uDeBEBJHiQ.png', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
 
 -- --------------------------------------------------------
@@ -1340,7 +1347,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin@xfdev.com', 'users/December2022/aYynLCiP5qXcgCuYJ0rm.png', NULL, '$2y$10$PPb0MYC4GQH9vwRPF.jmT.1aXUKRCYZj4j0/6.ic4bhL5xeuHnur6', 'Z9P9ZKhHOO5J83QKTFfC3QHFM0EpgjGf7ztgbYEV4U9NdczabPgPCHHTVByZ', '{\"locale\":\"tr\"}', '2022-04-27 17:11:15', '2022-12-29 11:08:00'),
+(1, 1, 'admin', 'admin@xfdev.com', 'users/December2022/aYynLCiP5qXcgCuYJ0rm.png', NULL, '$2y$10$PPb0MYC4GQH9vwRPF.jmT.1aXUKRCYZj4j0/6.ic4bhL5xeuHnur6', 'PaIlYAPogAvAW7az6ny44MqG2mXW8DV1vCeVhd669uDnUS7MqTNKLo0AQmXV', '{\"locale\":\"tr\"}', '2022-04-27 17:11:15', '2022-12-29 11:08:00'),
 (2, 3, 'publisher', 'publisher@xfdev.com', 'users/December2022/oVf5O5RsVhS1MVW7zegD.jpg', NULL, '$2y$10$WyU3J.o1U9zsIYWcYPPaduSZpUyCWoryE/lEoYWxgl/HiX839qsQG', NULL, '{\"locale\":\"tr\"}', '2022-12-29 11:07:47', '2022-12-29 11:07:47');
 
 -- --------------------------------------------------------
@@ -1651,7 +1658,7 @@ ALTER TABLE `failed_jobs`
 -- Tablo için AUTO_INCREMENT değeri `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `menus`
