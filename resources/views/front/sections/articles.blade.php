@@ -39,14 +39,14 @@
         <div class="article-card row text-start">
 
             @foreach($homePosts as $homePost)
-            <div class="col-md-4 mb-5 pt-3 pb-3" onclick="location.href='{{route('post', ['slug' => $homePost->slug])}}'">
+            <div class="col-md-4 mb-5 pt-3 pb-3" onclick="location.href='{{piri('blog.post', ['slug' => $homePost->slug])}}'">
                 <div class="article-card-img" style="background-image:url('{{Storage::url(afterImageName($homePost->image, 'medium'))}}')"></div>
 
                 {{--
                 location.href ile bir kutuya yönlendirme verilse dahi
                 seo için bu url'e <a href> ile erişim sağlanmak zorundadır
                 --}}
-                <a href="{{route('post', ['slug' => $homePost->slug])}}"
+                <a href="{{piri('blog.post', ['slug' => $homePost->slug])}}"
                     class="article-card-title"
                     title="{{$homePost->title}}">
                     <h5 class="mb-3">{{$homePost->title}}</h5>
@@ -67,14 +67,14 @@
                 class="horizantal-card-tags article-card-tags"
                 --}}
                 <div class="article-card-tags">
-                    <a href="{{route('category', ['slug' => $homePost->category->getTranslatedAttribute('slug')])}}"
+                    <a href="{{piri('blog.category', ['slug' => $homePost->category->getTranslatedAttribute('slug')])}}"
                         class="text-decoration-none fw-bolder btn btn-warning"
                         title="{{$homePost->category->getTranslatedAttribute('title')}}">
                         {{strtitle($homePost->category->getTranslatedAttribute('title'))}}
                     </a>
 
                     @foreach($homePost->tags as $postTag)
-                    <a href="{{route('tag', ['slug' => $postTag->getTranslatedAttribute('slug')])}}"
+                    <a href="{{piri('blog.tag', ['slug' => $postTag->getTranslatedAttribute('slug')])}}"
                         class="btn btn-warning"
                         title="{{$postTag->getTranslatedAttribute('title')}}">
                         #{{strtitle($postTag->getTranslatedAttribute('title'))}}

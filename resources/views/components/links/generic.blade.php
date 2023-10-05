@@ -2,17 +2,11 @@
 $title = $title ? $title : $row->title;
 
 switch ($type) {
-    case 'page':
-        $fullRoute = route($type, ['lang' => app()->getLocale(), 'slug' => $row->slug]);
-        break;
-    case 'post':
-        $fullRoute = route($type, ['lang' => app()->getLocale(), 'slug' => $row->slug]);
-        break;
-    case 'category':
-        $fullRoute = route($type, ['lang' => app()->getLocale(), 'slug' => $row->slug]);
+    case 'basic':
+        $fullRoute = piri($piri, ['lang' => app()->getLocale(), 'slug' => $row->slug]);
         break;
     default:
-        $fullRoute = route($type, ['lang' => app()->getLocale()]);
+        $fullRoute = piri($piri, ['lang' => app()->getLocale()]);
         break;
 }
 

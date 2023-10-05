@@ -7,6 +7,9 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
+use App\Http\Middleware\IgnoreLangCode;
+
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -36,19 +39,32 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            /*
-            if(preg_match('/ugurakcil.co.uk/', request()->server()['SERVER_NAME'])){
-                Route::middleware('web')
-                    ->namespace($this->namespace)
-                    ->group(base_path('routes/en.php'));
-            }
 
-            if(preg_match('/ugurakcil.com/', request()->server()['SERVER_NAME'])){
+            // Domaini al
+            $domain = request()->getHost();
+
+            // Dil eşleşmesini bul
+            $locales = Config::get('app.available_locales');
+            $lang = array_search($domain, $locales);
+
+            // Eşleşme varsa ve dosya mevcutsa o dosyayı, yoksa default dosyayı yükle
+            $routeFile = base_path(
+                'routes/' . ($lang && file_exists(base_path('routes/' . $lang . '.php'))
+                ? $lang : Config::get('app.locale')) . '.php');
+
+            if (Config::get('app.multidomain')) {
                 Route::middleware('web')
-                    ->namespace($this->namespace)
-                    ->group(base_path('routes/tr.php'));
+                     ->namespace($this->namespace)
+                     ->group($routeFile);
+            } else {
+                Route::get('/', [\App\Http\Controllers\GeneralController::class, 'home'])->name('index');
+
+                Route::middleware(['web', IgnoreLangCode::class])
+                     ->prefix('{lang}')
+                     ->where(['lang' => 'en|tr|ar|de'])
+                     ->namespace($this->namespace)
+                     ->group($routeFile);
             }
-            */
         });
     }
 

@@ -1,6 +1,6 @@
 <section class="contact">
     <div class="container">
-        <form method="POST" action="{{route('saveContact')}}" id="contact_form">
+        <form method="POST" action="{{piri('saveContact')}}" id="contact_form">
         <div class="contact-row">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 

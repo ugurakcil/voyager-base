@@ -23,7 +23,8 @@
 
                     {{-- Privacy Policy --}}
                     <x-links.generic
-                        type="page"
+                        piri="page"
+                        type="basic"
                         lettercase="title"
                         :row="$globalPages[4]"/>
 
@@ -45,7 +46,7 @@
                                     hreflang="{{ $localeKey }}"
                                     href="{{ $localeContent->route }}"
                                     title="{{ $localeContent->title }}">
-                                        {{ strupper($localeContent->language) }}
+                                        {{ strupper($localeKey) }}
                                     </a>
                                 @endif
                             </li>
@@ -58,9 +59,9 @@
                                     class="dropdown-item"
                                     rel="alternate"
                                     hreflang="{{ $localeKey }}"
-                                    href="{{ route('setLocale', ['locale' => $localeKey]) }}"
-                                    title="{{ $localeVal }}">
-                                        {{ strupper($localeVal) }}
+                                    href="{{ piri('setLocale', ['locale' => $localeKey]) }}"
+                                    title="{{ $localeKey }}">
+                                        {{ strupper($localeKey) }}
                                     </a>
                                 @endif
                             </li>
@@ -75,7 +76,7 @@
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark p-3 shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{url(app()->getLocale())}}" title="{{$website->name}}">
+        <a class="navbar-brand" href="{{ piri('home', ['lang' => app()->getLocale()]) }}" title="{{$website->name}}">
             <i class="fa-solid fa-shop me-2"></i>
             <strong>{{$website->name}}</strong>
         </a>
@@ -92,7 +93,7 @@
         </div>
         <div class=" collapse navbar-collapse" id="navbarNavDropdown">
             <div class="ms-auto d-none d-lg-block">
-            <form action="{{route('search')}}" method="GET">
+            <form action="{{ piri('blog.search', ['lang' => app()->getLocale()]) }}" method="GET">
                 <div class="input-group search-box">
                     <input type="text" name="search" class="form-control border-warning"
                         placeholder="{{__('site.search')}}"
@@ -107,14 +108,15 @@
 
                 {{-- Homepage --}}
                 <x-links.generic
-                    type="home"
+                    piri="home"
                     li="nav-item"
                     a="nav-link mx-2 text-uppercase"
                     :row="(object) ['title' => __('site.homepage')]"/>
 
                 {{-- About Us --}}
                 <x-links.generic
-                    type="page"
+                    piri="page"
+                    type="basic"
                     li="nav-item"
                     a="nav-link mx-2 text-uppercase"
                     :row="$globalPages[1]"/>
@@ -130,7 +132,8 @@
                         @foreach ($postCategories as $postCategoryRow)
                             {{-- Post Category --}}
                             <x-links.generic
-                                type="category"
+                                piri="blog.category"
+                                type="basic"
                                 li="dropdown-item"
                                 a="d-block"
                                 lettercase="upper"
@@ -145,7 +148,8 @@
 
                 {{-- Contact --}}
                 <x-links.generic
-                    type="page"
+                    piri="page"
+                    type="basic"
                     li="nav-item"
                     a="nav-link mx-2 text-uppercase"
                     icon="fa-solid fa-envelope"

@@ -24,7 +24,6 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \UgurAkcil\VoyagerBooster\Http\Middleware\Locale::class,
-        \App\Http\Middleware\FirstVisitorRules::class,
     ];
 
     /**
@@ -40,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\IgnoreLangCode::class,
         ],
 
         'api' => [

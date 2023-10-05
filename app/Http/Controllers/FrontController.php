@@ -73,11 +73,11 @@ class FrontController extends Controller
         return [
             [
                 'title' => $this->data['globalPages'][1]->title,
-                'route' => route('page', ['slug' => $this->data['globalPages'][1]->slug])
+                'route' => piri('page', ['slug' => $this->data['globalPages'][1]->slug])
             ],
             [
                 'title' => __('site.management_team'),
-                'route' => route('managers')
+                'route' => piri('managers')
             ],
         ];
     }

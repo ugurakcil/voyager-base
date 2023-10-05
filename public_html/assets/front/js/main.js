@@ -33,18 +33,37 @@ domReady(function() {
         insertScript('/assets/front/addons/bootstrap/js/bootstrap.bundle.min.js')
     }, 1000)
      */
+
+    $("#newsletter_form").submit(function(event){
+        event.preventDefault(); //prevent default action
+
+        if(document.querySelector('#newsletter_form')) {
+            $("#newsletter_form").submit(function (event) {
+                event.preventDefault(); //prevent default action
+
+                insertScript('/assets/front/addons/swal.js')
+                insertScript('/assets/front/js/afterwards/newsletter.js')
+
+                setTimeout(() => {
+                    saveNewsletter(this)
+                }, 200);
+            });
+        }
+
+        /*
+        if(document.querySelector('.basket-amount-input')) {
+            insertScript('/assets/front/js/afterwards/basket.js')
+        }
+
+        setTimeout(function () {
+            insertScript('/assets/front/js/afterwards/form.js', 'text/javascript', function() {
+                initForms()
+            })
+        }, 2000)
+        */
+
+    });
 })
-
-$("#newsletter_form").submit(function(event){
-	event.preventDefault(); //prevent default action
-
-    insertScript('/assets/front/addons/swal.js')
-    insertScript('/assets/front/js/afterwards/newsletter.js')
-
-    setTimeout(() => {
-        saveNewsletter(this)
-    }, 500);
-});
 
 /*
 jQuery dom starter, tavsiye edilmez!

@@ -33,7 +33,7 @@
 @if($website->social_twitter)
 <li>
     <a href="{{$website->social_twitter}}" title="twitter" target="_blank" rel="nofollow">
-        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-x-twitter"></i>
     </a>
 </li>
 @endif

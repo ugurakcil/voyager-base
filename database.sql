@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 26 Ağu 2023, 02:55:27
+-- Üretim Zamanı: 05 Eki 2023, 12:08:26
 -- Sunucu sürümü: 8.0.34-0ubuntu0.22.04.1
--- PHP Sürümü: 8.2.9
+-- PHP Sürümü: 8.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -204,7 +204,14 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (118, 12, 'link2_url', 'text', 'Bağlantı 2 URL (varsa)', 0, 0, 1, 1, 1, 1, '{}', 12),
 (119, 12, 'created_at', 'timestamp', 'Üretildi', 0, 0, 1, 0, 0, 1, '{\"format\":\"%d-%m-%Y %H:%M:%S\"}', 14),
 (120, 12, 'updated_at', 'timestamp', 'Güncellendi', 0, 1, 1, 0, 0, 0, '{\"format\":\"%d-%m-%Y %H:%M:%S\"}', 15),
-(121, 12, 'bulk_list_features', 'bulk_list', 'Özellikler', 0, 0, 1, 1, 1, 1, '{}', 13);
+(121, 12, 'bulk_list_features', 'bulk_list', 'Özellikler', 0, 0, 1, 1, 1, 1, '{}', 13),
+(122, 13, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(123, 13, 'table_name', 'text', 'Process Zone', 0, 1, 1, 0, 0, 0, '{}', 2),
+(124, 13, 'operation_name', 'text', 'Process Type', 0, 1, 1, 0, 0, 0, '{}', 3),
+(125, 13, 'data_id', 'text', 'Content ID', 0, 1, 1, 0, 0, 0, '{}', 4),
+(126, 13, 'user_id', 'text', 'User ID', 0, 1, 1, 0, 0, 0, '{}', 5),
+(127, 13, 'created_at', 'timestamp', 'Logging Time', 0, 1, 1, 0, 0, 0, '{}', 6),
+(128, 13, 'log_belongsto_user_relationship', 'relationship', 'User', 0, 1, 1, 0, 0, 0, '{\"model\":\"App\\\\Models\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7);
 
 -- --------------------------------------------------------
 
@@ -246,7 +253,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (9, 'categories', 'categories', 'Kategorisi', 'Kategorileri', 'voyager-categories', 'App\\Models\\Category', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":\"order\",\"order_display_column\":\"title\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-12-19 17:02:21', '2022-12-21 12:03:33'),
 (10, 'posts', 'posts', 'İçerik', 'İçerikler', 'voyager-news', 'App\\Models\\Post', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-12-19 17:09:49', '2022-12-27 11:07:44'),
 (11, 'tags', 'tags', 'Etiket', 'Etiketler', 'voyager-tag', 'App\\Models\\Tag', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2022-12-19 17:14:26', '2022-12-21 12:03:16'),
-(12, 'parts', 'parts', 'Parça', 'Parçalar', 'voyager-pizza', 'App\\Models\\Part', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-12-27 12:54:05', '2023-02-07 23:28:32');
+(12, 'parts', 'parts', 'Parça', 'Parçalar', 'voyager-pizza', 'App\\Models\\Part', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-12-27 12:54:05', '2023-02-07 23:28:32'),
+(13, 'logs', 'logs', 'Log', 'Logs', 'voyager-logbook', 'App\\Models\\Log', NULL, 'App\\Http\\Controllers\\Admin\\Defaults\\BrowseController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"table_name\",\"scope\":null}', '2023-10-05 09:05:50', '2023-10-05 09:07:47');
 
 -- --------------------------------------------------------
 
@@ -353,7 +361,8 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (18, 1, 'İçerikler', '', '_self', 'voyager-news', '#000000', 20, 1, '2022-12-19 17:09:50', '2022-12-19 17:58:28', 'voyager.posts.index', 'null'),
 (19, 1, 'Etiketler', '', '_self', 'voyager-tag', '#000000', 20, 3, '2022-12-19 17:14:26', '2022-12-19 17:58:34', 'voyager.tags.index', 'null'),
 (20, 1, 'İçerik Listesi', '', '_self', 'voyager-treasure', '#000000', NULL, 2, '2022-12-19 17:58:15', '2022-12-19 17:58:21', NULL, ''),
-(22, 1, 'Parçalar', '', '_self', 'voyager-pizza', '#000000', NULL, 6, '2022-12-27 23:37:17', '2022-12-27 23:37:52', 'voyager.parts.index', 'null');
+(22, 1, 'Parçalar', '', '_self', 'voyager-pizza', '#000000', NULL, 6, '2022-12-27 23:37:17', '2022-12-27 23:37:52', 'voyager.parts.index', 'null'),
+(23, 1, 'Logs', '', '_self', 'voyager-logbook', NULL, NULL, 14, '2023-10-05 09:05:50', '2023-10-05 09:05:50', 'voyager.logs.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -408,6 +417,13 @@ CREATE TABLE `newsletters` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `newsletters`
+--
+
+INSERT INTO `newsletters` (`id`, `email`, `created_at`) VALUES
+(4, 'dev@digitalexchange.com.tr', NULL);
 
 -- --------------------------------------------------------
 
@@ -575,7 +591,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (67, 'read_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
 (68, 'edit_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
 (69, 'add_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
-(70, 'delete_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05');
+(70, 'delete_parts', 'parts', '2022-12-27 12:54:05', '2022-12-27 12:54:05'),
+(71, 'browse_logs', 'logs', '2023-10-05 09:05:50', '2023-10-05 09:05:50'),
+(72, 'read_logs', 'logs', '2023-10-05 09:05:50', '2023-10-05 09:05:50'),
+(73, 'edit_logs', 'logs', '2023-10-05 09:05:50', '2023-10-05 09:05:50'),
+(74, 'add_logs', 'logs', '2023-10-05 09:05:50', '2023-10-05 09:05:50'),
+(75, 'delete_logs', 'logs', '2023-10-05 09:05:50', '2023-10-05 09:05:50');
 
 -- --------------------------------------------------------
 
@@ -705,7 +726,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (68, 1),
 (68, 3),
 (69, 1),
-(70, 1);
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1);
 
 -- --------------------------------------------------------
 
@@ -1320,7 +1346,34 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (415, 'parts', 'bulk_list_features', 2, 'en', 'TestßßßDemo¶¶¶', '2023-02-07 22:49:40', '2023-02-07 22:49:40'),
 (416, 'data_rows', 'display_name', 121, 'en', 'Özellikler', '2023-02-07 23:28:32', '2023-02-07 23:28:32'),
 (417, 'data_rows', 'display_name', 121, 'ar', 'Özellikler', '2023-02-07 23:28:32', '2023-02-07 23:28:32'),
-(418, 'data_rows', 'display_name', 121, 'de', 'Özellikler', '2023-02-07 23:28:32', '2023-02-07 23:28:32');
+(418, 'data_rows', 'display_name', 121, 'de', 'Özellikler', '2023-02-07 23:28:32', '2023-02-07 23:28:32'),
+(419, 'data_rows', 'display_name', 122, 'en', 'Id', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(420, 'data_rows', 'display_name', 122, 'ar', 'Id', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(421, 'data_rows', 'display_name', 122, 'de', 'Id', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(422, 'data_rows', 'display_name', 123, 'en', 'Process Zone', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(423, 'data_rows', 'display_name', 123, 'ar', 'Process Zone', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(424, 'data_rows', 'display_name', 123, 'de', 'Process Zone', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(425, 'data_rows', 'display_name', 124, 'en', 'Process Type', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(426, 'data_rows', 'display_name', 124, 'ar', 'Process Type', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(427, 'data_rows', 'display_name', 124, 'de', 'Process Type', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(428, 'data_rows', 'display_name', 125, 'en', 'Content ID', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(429, 'data_rows', 'display_name', 125, 'ar', 'Content ID', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(430, 'data_rows', 'display_name', 125, 'de', 'Content ID', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(431, 'data_rows', 'display_name', 126, 'en', 'User ID', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(432, 'data_rows', 'display_name', 126, 'ar', 'User ID', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(433, 'data_rows', 'display_name', 126, 'de', 'User ID', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(434, 'data_rows', 'display_name', 127, 'en', 'Logging Time', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(435, 'data_rows', 'display_name', 127, 'ar', 'Logging Time', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(436, 'data_rows', 'display_name', 127, 'de', 'Logging Time', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(437, 'data_rows', 'display_name', 128, 'en', 'users', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(438, 'data_rows', 'display_name', 128, 'ar', 'users', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(439, 'data_rows', 'display_name', 128, 'de', 'users', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(440, 'data_types', 'display_name_singular', 13, 'en', 'Log', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(441, 'data_types', 'display_name_singular', 13, 'ar', 'Log', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(442, 'data_types', 'display_name_singular', 13, 'de', 'Log', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(443, 'data_types', 'display_name_plural', 13, 'en', 'Logs', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(444, 'data_types', 'display_name_plural', 13, 'ar', 'Logs', '2023-10-05 09:06:56', '2023-10-05 09:06:56'),
+(445, 'data_types', 'display_name_plural', 13, 'de', 'Logs', '2023-10-05 09:06:56', '2023-10-05 09:06:56');
 
 -- --------------------------------------------------------
 
@@ -1640,13 +1693,13 @@ ALTER TABLE `contacts`
 -- Tablo için AUTO_INCREMENT değeri `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `failed_jobs`
@@ -1670,7 +1723,7 @@ ALTER TABLE `menus`
 -- Tablo için AUTO_INCREMENT değeri `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `migrations`
@@ -1682,7 +1735,7 @@ ALTER TABLE `migrations`
 -- Tablo için AUTO_INCREMENT değeri `newsletters`
 --
 ALTER TABLE `newsletters`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `pages`
@@ -1700,7 +1753,7 @@ ALTER TABLE `parts`
 -- Tablo için AUTO_INCREMENT değeri `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `personal_access_tokens`
@@ -1748,7 +1801,7 @@ ALTER TABLE `tags`
 -- Tablo için AUTO_INCREMENT değeri `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=419;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=446;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`

@@ -238,7 +238,7 @@ class FeaturedContent extends \App\Http\Controllers\Controller
 
         if ($postCollection->slug != $slug) {
             return redirect(
-                route(
+                piri(
                     'post',
                     [
                         'lang' => app()->getLocale(),

@@ -46,7 +46,7 @@ class PostController extends FrontController
     /**
      * Post sayfasını görüntüler
      */
-    public function show ($lang, $slug, Request $request) {
+    public function show ($slug, Request $request) {
         /*
         * Blocks URLs that are too long or too short
         * as a general security measure
@@ -77,12 +77,12 @@ class PostController extends FrontController
         $this->data['translationsCurrentPage'] = [];
         foreach (\Config::get('app.available_locales') as $langKey => $langVal) {
             $this->data['translationsCurrentPage'][$langKey] = (object) [
-                'route' => route('post', [
+                'route' => route('blog.post', [
                     'lang' => $langKey,
                     'slug' => $post->getTranslatedAttribute('slug', $langKey, 'tr')
                 ]),
                 'title' => $post->getTranslatedAttribute('title', $langKey, 'tr'),
-                'language' => $langVal,
+                'language' => $langKey,
             ];
 
             if ($post->getTranslatedAttribute('status', $langKey, 'tr') != 1) {
@@ -91,7 +91,7 @@ class PostController extends FrontController
                         'lang' => $langKey,
                     ]),
                     'title' => $this->data['websiteTranslations']->getTranslatedAttribute('seo_title', $langKey, 'tr'),
-                    'language' => $langVal,
+                    'language' => $langKey,
                 ];
             }
         }
@@ -136,7 +136,7 @@ class PostController extends FrontController
         if($this->data['post']->slug != $slug) {
             return redirect(
                 route(
-                    'post',
+                    'blog.post',
                     [
                         'lang' => app()->getLocale(),
                         'slug' => $this->data['post']->slug
@@ -169,7 +169,7 @@ class PostController extends FrontController
     /**
      * Gelen category->slug değerine göre aynı kategorideki post list
      */
-    public function categories($lang, $slug, Request $request) {
+    public function categories($slug, Request $request) {
         $currentList = Category::select('id','title', 'slug', 'parent_id')
             ->whereTranslation('slug', $slug)->first();
 
@@ -216,9 +216,9 @@ class PostController extends FrontController
             }
 
             $this->data['translationsCurrentPage'][$langKey] = (object) [
-                'route' => route('category', $routeParams),
+                'route' => route('blog.category', $routeParams),
                 'title' => $title,
-                'language' => $langVal,
+                'language' => $langKey,
             ];
         }
 
@@ -228,7 +228,7 @@ class PostController extends FrontController
     /**
      * Gelen tag->slug değerine göre aynı etiketteki post list
      */
-    public function tags($lang, $slug, Request $request) {
+    public function tags($slug, Request $request) {
         $currentList = Tag::select('id','title', 'slug')
             ->whereTranslation('slug', $slug)->first();
 
@@ -271,9 +271,9 @@ class PostController extends FrontController
             }
 
             $this->data['translationsCurrentPage'][$langKey] = (object) [
-                'route' => route('tag', $routeParams),
+                'route' => route('blog.tag', $routeParams),
                 'title' => $title,
-                'language' => $langVal,
+                'language' => $langKey,
             ];
         }
 
@@ -286,7 +286,7 @@ class PostController extends FrontController
      * öncelikle SearchController'ı kendi başına bir class olarak buradan çıkarın
      * Sonrasında farklı arama querylerinin sonuçlarını bir objede toplayın ve sayfalayın
      */
-    public function search($lang, Request $req) {
+    public function search(Request $req) {
         $searchKey = $req->input('search');
 
         if(mb_strlen($searchKey) > 100 || mb_strlen($searchKey) < 1) {

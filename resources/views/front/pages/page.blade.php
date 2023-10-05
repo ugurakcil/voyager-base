@@ -13,7 +13,7 @@
     @php
     $currentSection = (object) [
         'title' => $page->title,
-        'route' => route('page', ['lang' => app()->getLocale(), 'slug' => $page->slug]),
+        'route' => piri('page', ['lang' => app()->getLocale(), 'slug' => $page->slug]),
         'header_image' => $page->header_image
     ];
     @endphp
@@ -57,7 +57,7 @@
                             @if($pageId != $page->id)
                                 <li>
                                     <a title="{{$pageRow->title}}"
-                                    href="{{route('page', ['lang' => app()->getLocale(), 'slug' => $pageRow->slug])}}">
+                                    href="{{piri('page', ['lang' => app()->getLocale(), 'slug' => $pageRow->slug])}}">
                                         {{$pageRow->title}}
                                     </a>
                                 </li>

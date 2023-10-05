@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\GenericNotification;
 use App\Models\Contact;
 use App\Models\Newsletter;
+use Illuminate\Http\Request;
 
 class FormController extends FrontController
 {

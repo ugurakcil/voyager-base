@@ -11,13 +11,14 @@
 
                     {{-- Homepage --}}
                     <x-links.generic
-                        type="home"
+                        piri="home"
                         li="nav-item mb-2"
                         :row="(object) ['title' => __('site.homepage')]"/>
 
                     {{-- About Us --}}
                     <x-links.generic
-                        type="page"
+                        piri="page"
+                        type="basic"
                         li="nav-item mb-2"
                         :row="$globalPages[1]"/>
 
@@ -30,7 +31,8 @@
 
                     {{-- Privacy Policy --}}
                     <x-links.generic
-                        type="page"
+                        piri="page"
+                        type="basic"
                         li="nav-item mb-2"
                         :row="$globalPages[4]"/>
 
@@ -47,7 +49,7 @@
                 <h5 class="mt-4 mb-2">{{__('site.newsletter_title')}}</h5>
                 <p>{{__('site.newsletter_text')}}</p>
 
-                <form action="{{route('saveNewsletter')}}" method="POST" id="newsletter_form" class="needs-validation" novalidate>
+                <form action="{{piri('saveNewsletter')}}" method="POST" id="newsletter_form" class="needs-validation" novalidate>
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
 

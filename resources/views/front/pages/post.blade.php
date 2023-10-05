@@ -13,7 +13,7 @@
     @php
     $currentSection = (object) [
         'title' => $post->title,
-        'route' => route('post', ['lang' => app()->getLocale(), 'slug' => $post->slug]),
+        'route' => piri('blog.post', ['lang' => app()->getLocale(), 'slug' => $post->slug]),
         'header_image' => $post->image
     ];
     @endphp
@@ -55,7 +55,7 @@
                             @foreach ($postCategories as $postCategoryRow)
                             <li>
                                 <a title="{{$postCategoryRow->title}}"
-                                    href="{{route('category', ['lang' => app()->getLocale(), 'slug' => $postCategoryRow->slug])}}">
+                                    href="{{piri('blog.category', ['lang' => app()->getLocale(), 'slug' => $postCategoryRow->slug])}}">
                                     {{$postCategoryRow->title}}
                                 </a>
                             </li>
@@ -68,7 +68,7 @@
                         @foreach ($post->tags as $postTag)
                             <a title="{{$postTag->title}}"
                                 class="d-inline-block"
-                                href="{{route('tag', ['lang' => app()->getLocale(), 'slug' => $postTag->slug])}}">
+                                href="{{piri('blog.tag', ['lang' => app()->getLocale(), 'slug' => $postTag->slug])}}">
                                 #{{$postTag->title}}
                             </a>
                         @endforeach
@@ -81,7 +81,7 @@
                             @if($postId != $post->id)
                                 <li>
                                     <a title="{{$postRow->title}}"
-                                    href="{{route('post', ['lang' => app()->getLocale(), 'slug' => $postRow->slug])}}">
+                                    href="{{piri('blog.post', ['lang' => app()->getLocale(), 'slug' => $postRow->slug])}}">
                                         {{$postRow->title}}
                                     </a>
                                 </li>

@@ -13,7 +13,7 @@ class PageController extends FrontController
         parent::__construct();
     }
 
-    public function show($lang, $slug, Request $request)
+    public function show($slug, Request $request)
     {
         /*
         * Blocks URLs that are too long or too short
@@ -41,12 +41,12 @@ class PageController extends FrontController
         $this->data['translationsCurrentPage'] = [];
         foreach (\Config::get('app.available_locales') as $langKey => $langVal) {
             $this->data['translationsCurrentPage'][$langKey] = (object) [
-                'route' => route('page', [
+                'route' => piri('page', [
                     'lang' => $langKey,
                     'slug' => $page->getTranslatedAttribute('slug', $langKey, 'tr')
                 ]),
                 'title' => $page->getTranslatedAttribute('title', $langKey, 'tr'),
-                'language' => $langVal,
+                'language' => $langKey,
             ];
         }
 
@@ -83,7 +83,7 @@ class PageController extends FrontController
 
         if($this->data['page']->slug != $slug) {
             return redirect(
-                route(
+                piri(
                     'page',
                     [
                         'lang' => app()->getLocale(),

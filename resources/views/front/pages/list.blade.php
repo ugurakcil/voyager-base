@@ -10,7 +10,7 @@
 <header>
     @include("front.includes.navbar")
 
-    {{-- 
+    {{--
     Bir partials, section vb bölümün aldığı değerlerin isimleri
     page-header kavramında olduğu gibi değişkenlik gösteriyorsa,
     aşağıda olduğu gibi bir obje setine bağlı çalıştırabilirsiniz
@@ -31,10 +31,10 @@
         @foreach($posts as $post)
             <!-- Blog Post -->
             <div class="col-md-6">
-                {{-- 
+                {{--
                 İkinci defa kullanılan, kod karmaşasını büyük ölçüde azaltacak parçaları
-                aşağıdaki post-big-card'da olduğu gibi doğru bir şekilde ayırıp 
-                her yerde kolayca kullanılabilir hale getirebilirsiniz    
+                aşağıdaki post-big-card'da olduğu gibi doğru bir şekilde ayırıp
+                her yerde kolayca kullanılabilir hale getirebilirsiniz
                 --}}
                 @include('front.partials.post-big-card')
             </div><!-- /.col-md-* -->

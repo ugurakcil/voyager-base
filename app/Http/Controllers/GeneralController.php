@@ -35,11 +35,11 @@ class GeneralController extends FrontController
         $this->data['translationsCurrentPage'] = [];
         foreach (\Config::get('app.available_locales') as $langKey => $langVal) {
             $this->data['translationsCurrentPage'][$langKey] = (object) [
-                'route' => route('home', [
+                'route' => piri('home', [
                     'lang' => $langKey,
                 ]),
                 'title' => $this->data['websiteTranslations']->getTranslatedAttribute('seo_title', $langKey, 'tr'),
-                'language' => $langVal,
+                'language' => $langKey,
             ];
         }
 

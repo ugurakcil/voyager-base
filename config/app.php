@@ -82,14 +82,21 @@ return [
     |
     */
 
-    'locale' => 'tr',
+    'locale' => 'en',
 
+    /**
+     * Multidomain true ise ilgili dilin domain adresini aşağıdaki örnekteki gibi
+     * valuelara ekleyin. www. ve http bilgisini eklemeyin.
+     *
+     *    'en' => 'ugurakcil.co.uk',
+     *    'tr' => 'ugurakcil.com',
+     */
     'available_locales' => [
-        'tr' => 'tr',
         'en' => 'en',
-        'ar' => 'ar',
-        'de' => 'de',
+        'tr' => 'tr',
     ],
+
+    'multidomain' => false,
 
     /**
      * Bu kısım GEO Location kullanılacağı zaman ayarlanır

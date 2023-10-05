@@ -11,6 +11,13 @@ class Generic extends Component
      *
      * @var string|boolean
      */
+    public $piri;
+
+    /**
+     * Route scheme name
+     *
+     * @var string|boolean
+     */
     public $type;
 
     /**
@@ -63,7 +70,7 @@ class Generic extends Component
      */
     public function isActivated()
     {
-        if ($this->type == 'page') {
+        if ($this->type == 'basic') {
             return $this->row->slug === request()->segment(3) ? 'active' : '';
         } else if ($this->type == 'category') {
             return $this->row->slug === request()->segment(3) ? 'active' : '';
@@ -82,14 +89,16 @@ class Generic extends Component
         $a = false,
         $icon = false,
         $row = false,
-        $type = 'page',
+        $type = false,
         $title = false,
-        $lettercase = false
+        $lettercase = false,
+        $piri = 'page',
     ) {
         $this->li           = $li;
         $this->a            = $a;
-        $this->icon         = $icon;
         $this->row          = $row;
+        $this->piri         = $piri;
+        $this->icon         = $icon;
         $this->type         = $type;
         $this->title        = $title;
         $this->lettercase   = $lettercase;
